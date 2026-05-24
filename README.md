@@ -4,6 +4,10 @@ A **plug-and-play, expandable** collection of generic ABAP / RAP utilities for
 modern SAP development teams (ABAP on-premise, S/4HANA, and — where noted —
 ABAP Cloud / clean core).
 
+> **New here? Start at [docs/recipes.md](docs/recipes.md)** — a task→tool index
+> ("I want to send an e-mail → `ZCL_AU_EMAIL`", …) — and see [`ZAU_DEMO`](src/demo/README.md)
+> for several utilities working together in one report.
+
 Every utility is:
 
 - **Self-contained** – almost all utilities are a single class with **zero
