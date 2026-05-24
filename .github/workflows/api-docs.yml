@@ -1,0 +1,33 @@
+name: api-docs
+
+# Regenerate docs/api from the ABAP sources, fail if it is out of date
+# (keeps the generated API reference in sync with the code), and publish the
+# generated docs as a build artifact.
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  api-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Generate API docs
+        run: node tools/gen-api-docs.js
+      - name: Verify docs/api is up to date
+        run: |
+          if ! git diff --quiet -- docs/api; then
+            echo "::error::docs/api is out of date. Run 'npm run docs' and commit the result."
+            git --no-pager diff --stat -- docs/api
+            exit 1
+          fi
+      - name: Publish API docs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-docs
+          path: docs/api

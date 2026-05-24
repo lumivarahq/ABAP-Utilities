@@ -33,6 +33,8 @@ the ⚠️/❌ ones, and the **released replacement** to use in the cloud.
 | guard   | `ZCL_AU_GUARD` | language only |
 | docgen  | `ZCL_AU_DOCGEN` | RTTI (`cl_abap_typedescr`) — **the class only** |
 | fiori   | `ZCL_AU_FIORI_GEN` | RTTI + string building (emits CDS/RAP/SRVD source) |
+| wrapper | `ZCL_AU_WRAP_GEN` | string building (emits a released facade class) |
+| export  | `ZCL_AU_ANALYTICS_GEN` | string building (emits OData/analytics/extraction CDS) |
 | test    | `ZCL_AU_TEST_DATA` | `cl_abap_random*` |
 
 ## Confirm-before-cloud / has a documented alternative (⚠️)

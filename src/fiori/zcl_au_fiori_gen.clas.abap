@@ -27,6 +27,13 @@ class zcl_au_fiori_gen definition
         service_binding    type string,   " how-to steps (binding is created in ADT)
       end of ty_artifacts.
 
+    "! A value-help view plus the annotation that wires it to a consuming field.
+    types:
+      begin of ty_value_help,
+        view       type string,   " ZI_VH_*  DDLS
+        annotation type string,   " @Consumption.valueHelpDefinition to paste on the field
+      end of ty_value_help.
+
     "! Derive a default field list from a DDIC table or structure via RTTI.
     "! The FIRST field is marked as key by default - review and adjust is_key for
     "! your real key fields before generating.
@@ -41,18 +48,49 @@ class zcl_au_fiori_gen definition
     "! Generate the CDS + RAP + service artifacts for a maintenance / list-report
     "! Fiori app over a persistent table.
     "!
-    "! @parameter iv_entity      | logical entity name, e.g. `Product` (no prefix)
-    "! @parameter iv_data_source | the persistent DDIC table, e.g. `ztproduct`
-    "! @parameter it_fields      | the fields to expose (see fields_from_structure)
-    "! @parameter iv_namespace   | object name prefix, default `Z`
+    "! @parameter iv_entity        | logical entity name, e.g. `Product` (no prefix)
+    "! @parameter iv_data_source   | the persistent DDIC table, e.g. `ztproduct`
+    "! @parameter it_fields        | the fields to expose (see fields_from_structure)
+    "! @parameter iv_namespace     | object name prefix, default `Z`
+    "! @parameter iv_with_behavior | also generate RAP behavior (create/update/delete).
+    "!                               Pass abap_false for a read-only list (e.g. an ALV
+    "!                               report becomes a display-only Fiori list).
     class-methods generate
       importing
         !iv_entity        type string
         !iv_data_source   type string
         !it_fields        type tt_field
         !iv_namespace     type string default `Z`
+        !iv_with_behavior type abap_bool default abap_true
       returning
         value(rs_result)  type ty_artifacts
+      raising
+        zcx_au_error.
+
+    "! Generate a value-help (search-help replacement) CDS view, plus the
+    "! @Consumption.valueHelpDefinition annotation to put on the consuming field.
+    class-methods value_help
+      importing
+        !iv_entity       type string
+        !iv_data_source  type string
+        !iv_key_field    type string
+        !iv_text_field   type string optional
+        !iv_namespace    type string default `Z`
+      returning
+        value(rs_result) type ty_value_help
+      raising
+        zcx_au_error.
+
+    "! Generate a metadata extension (DDLX) that holds the @UI annotations
+    "! separately from the projection view (cleaner layering). Use this INSTEAD of
+    "! the inline @UI in the generated projection.
+    class-methods metadata_extension
+      importing
+        !iv_entity         type string
+        !it_fields         type tt_field
+        !iv_namespace      type string default `Z`
+      returning
+        value(rv_ddlx)     type string
       raising
         zcx_au_error.
 
@@ -158,34 +196,36 @@ class zcl_au_fiori_gen implementation.
       && join_lines( lt_pr ) && c_lf
       && |\}|.
 
-    " ---- behavior definition (managed): create / update / delete --------------
-    data lt_bd type string_table.
-    append |managed;| to lt_bd.
-    append |strict ( 2 );| to lt_bd.
-    append || to lt_bd.
-    append |define behavior for { lv_i_view } alias { iv_entity }| to lt_bd.
-    append |persistent table { iv_data_source }| to lt_bd.
-    append |lock master| to lt_bd.
-    append |authorization master ( global )| to lt_bd.
-    append |\{| to lt_bd.
-    append |  create;| to lt_bd.
-    append |  update;| to lt_bd.
-    append |  delete;| to lt_bd.
-    loop at it_fields into ls_field where is_key = abap_true.
-      append |  field ( readonly ) { ls_field-name };| to lt_bd.
-    endloop.
-    append |\}| to lt_bd.
-    rs_result-behavior = join_lines( lt_bd ).
+    " ---- behavior definitions (only for an editable app) ----------------------
+    if iv_with_behavior = abap_true.
+      " managed behavior: create / update / delete
+      data lt_bd type string_table.
+      append |managed;| to lt_bd.
+      append |strict ( 2 );| to lt_bd.
+      append || to lt_bd.
+      append |define behavior for { lv_i_view } alias { iv_entity }| to lt_bd.
+      append |persistent table { iv_data_source }| to lt_bd.
+      append |lock master| to lt_bd.
+      append |authorization master ( global )| to lt_bd.
+      append |\{| to lt_bd.
+      append |  create;| to lt_bd.
+      append |  update;| to lt_bd.
+      append |  delete;| to lt_bd.
+      loop at it_fields into ls_field where is_key = abap_true.
+        append |  field ( readonly ) { ls_field-name };| to lt_bd.
+      endloop.
+      append |\}| to lt_bd.
+      rs_result-behavior = join_lines( lt_bd ).
 
-    " ---- projection behavior --------------------------------------------------
-    rs_result-projection_behavior =
-         |projection;| && c_lf
-      && |define behavior for { lv_c_view } alias { iv_entity }| && c_lf
-      && |\{| && c_lf
-      && |  use create;| && c_lf
-      && |  use update;| && c_lf
-      && |  use delete;| && c_lf
-      && |\}|.
+      rs_result-projection_behavior =
+           |projection;| && c_lf
+        && |define behavior for { lv_c_view } alias { iv_entity }| && c_lf
+        && |\{| && c_lf
+        && |  use create;| && c_lf
+        && |  use update;| && c_lf
+        && |  use delete;| && c_lf
+        && |\}|.
+    endif.
 
     " ---- service definition ---------------------------------------------------
     rs_result-service_definition =
@@ -204,6 +244,57 @@ class zcl_au_fiori_gen implementation.
       && |3. Preview from the binding, or add a tile in the Fiori Launchpad / Launchpad| && c_lf
       && |   content (target mapping to the published OData service + SADL/UI app).| && c_lf
       && |4. Review keys, labels and @UI positions; add value helps / associations.|.
+  endmethod.
+
+
+  method value_help.
+    if iv_key_field is initial.
+      zcx_au_error=>raise( |A key field is required for the { iv_entity } value help| ) ##NO_TEXT.
+    endif.
+
+    data(lv_vh_view) = |{ iv_namespace }I_VH_{ iv_entity }|.
+
+    data lt_vh type string_table.
+    append |@AccessControl.authorizationCheck: #NOT_REQUIRED| to lt_vh.
+    append |@Search.searchable: true| to lt_vh.
+    append |@ObjectModel.resultSet.sizeCategory: #XS| to lt_vh.
+    append |@EndUserText.label: '{ iv_entity } value help'| to lt_vh.
+    append |define view entity { lv_vh_view }| to lt_vh.
+    append |  as select from { iv_data_source }| to lt_vh.
+    append |\{| to lt_vh.
+    " a comma is only needed after the key when a text field follows
+    append |  key { iv_key_field }| && cond string( when iv_text_field is not initial
+                                                     then `,` ) to lt_vh.
+    if iv_text_field is not initial.
+      append |      { iv_text_field }| to lt_vh.
+    endif.
+    append |\}| to lt_vh.
+
+    rs_result-view       = join_lines( lt_vh ).
+    rs_result-annotation = `@Consumption.valueHelpDefinition: [ { entity: { name: '`
+                        && lv_vh_view && `', element: '` && iv_key_field && `' } } ]`.
+  endmethod.
+
+
+  method metadata_extension.
+    if it_fields is initial.
+      zcx_au_error=>raise( |No fields for the metadata extension of { iv_entity }| ) ##NO_TEXT.
+    endif.
+
+    data(lv_c_view) = |{ iv_namespace }C_{ iv_entity }|.
+
+    data lt_mx type string_table.
+    append |@Metadata.layer: #CORE| to lt_mx.
+    append |annotate entity { lv_c_view } with| to lt_mx.
+    append |\{| to lt_mx.
+    loop at it_fields into data(ls_field).
+      append `  @UI.lineItem: [ { position: ` && |{ ls_field-position }| && ` } ]` to lt_mx.
+      append `  @UI.identification: [ { position: ` && |{ ls_field-position }| && ` } ]` to lt_mx.
+      append |  { ls_field-name };| to lt_mx.
+    endloop.
+    append |\}| to lt_mx.
+
+    rv_ddlx = join_lines( lt_mx ).
   endmethod.
 
 

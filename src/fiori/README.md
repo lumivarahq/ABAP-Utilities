@@ -60,11 +60,37 @@ data(ls)        = zcl_au_fiori_gen=>generate( iv_entity      = `Order`
 | `service_definition` | SRVD `ZUI_<entity>` | exposes the projection |
 | `service_binding` | (steps) | how to publish OData V4 - UI + add the tile |
 
+### Read-only list (display-only ALV ➜ Fiori)
+```abap
+data(ls) = zcl_au_fiori_gen=>generate( iv_entity        = `Order`
+                                       iv_data_source   = `ztorder`
+                                       it_fields        = lt_fields
+                                       iv_with_behavior = abap_false ).  "no create/update/delete
+```
+
+### Value help (search-help replacement)
+```abap
+data(ls_vh) = zcl_au_fiori_gen=>value_help( iv_entity      = `Currency`
+                                            iv_data_source = `ztcurrency`
+                                            iv_key_field   = `code`
+                                            iv_text_field  = `name` ).
+" ls_vh-view       -> a new DDLS (ZI_VH_Currency)
+" ls_vh-annotation -> paste on the consuming field in your projection view
+```
+
+### Metadata extension (annotations separated from the view)
+```abap
+data(lv_ddlx) = zcl_au_fiori_gen=>metadata_extension( iv_entity = `Product` it_fields = lt_fields ).
+" -> a new DDLX; keep @Metadata.allowExtensions: true on the projection, move @UI here
+```
+
 ## API
 | Method | Purpose |
 |--------|---------|
 | `fields_from_structure( iv_name )` | default field list from a table/structure (RTTI) |
-| `generate( iv_entity, iv_data_source, it_fields, iv_namespace )` | the 5 artifacts |
+| `generate( …, iv_with_behavior )` | the artifacts; `iv_with_behavior = abap_false` for a read-only list |
+| `value_help( iv_entity, iv_data_source, iv_key_field, iv_text_field )` | value-help view + consumption annotation |
+| `metadata_extension( iv_entity, it_fields )` | a DDLX holding the `@UI` annotations |
 | `zcl_au_fiori_from_alv=>fields( it_fcat )` | LVC field catalog → field list |
 
 ## Tests
