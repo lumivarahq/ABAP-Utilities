@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "lint": "abaplint",
-    "lint:fix": "abaplint --fix"
+    "lint:fix": "abaplint --fix",
+    "docs": "node tools/gen-api-docs.js"
   },
   "devDependencies": {
     "@abaplint/cli": "^2"

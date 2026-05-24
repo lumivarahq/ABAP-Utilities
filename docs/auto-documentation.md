@@ -48,10 +48,13 @@ rot silently.
 - **abapGit + this repo's per-module `README.md`** is itself the doc site: each
   utility folder documents its API and examples. Keep the README's API table in
   sync (the `documentation` rule helps).
-- **Markdown export**: a small report can walk classes via RTTI
-  (`cl_oo_class=>get_instance`, `cl_abap_classdescr`) or read ABAP Doc through
-  `cl_abap_comp_*` / the ADT doc APIs and emit Markdown into `docs/api/`. Run it
-  in the pipeline so generated docs always match the activated code.
+- **Markdown export (in-system)**: [`ZCL_AU_DOCGEN`](../src/docgen/README.md)
+  walks a class via RTTI and emits a Markdown API table at runtime.
+- **Markdown export (offline / CI)**: `tools/gen-api-docs.js` (run `npm run docs`)
+  parses the abapGit sources and writes [`docs/api/`](api/README.md). The
+  `api-docs` GitHub Actions workflow regenerates it, **fails the build if it
+  drifts** from the committed output, and publishes it as an artifact — so the
+  API reference always matches the code.
 - **SAP Knowledge Transfer (KT) docs** / object documentation (`SE61`) for
   end-user facing texts.
 

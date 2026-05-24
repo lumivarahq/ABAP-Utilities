@@ -166,6 +166,8 @@ before/after ABAP:
 | [RAP / CDS / BTP Modernization](docs/rap-cds-modernization.md) | the target stack, migrating reports to CDS+RAP+Fiori, VDM, managed/unmanaged RAP, BTP specifics |
 | [Fiori Conversion Cookbook](docs/fiori-conversion-cookbook.md) | turn table maintenance (SM30), ALV reports and selection-screen reports into Fiori tiles (with `ZCL_AU_FIORI_GEN`) |
 | [Data Export Cookbook](docs/data-export-cookbook.md) | export reports/CDS to Power BI & external systems via OData / analytics / extraction (with `ZCL_AU_ANALYTICS_GEN`) |
+| [BDC → BAPI/RAP Cookbook](docs/bdc-to-api-cookbook.md) | replace `CALL TRANSACTION` / batch input with released BAPIs, RAP (EML) or OData |
+| [Generated API reference](docs/api/README.md) | auto-generated method reference for every class/interface (`npm run docs`; published in CI) |
 | [Internal Tables Cookbook](docs/internal-tables-cookbook.md) | remove nested loops, sorted vs hashed, table expressions, `FOR`/`REDUCE`/`FILTER`/`GROUP BY` |
 | [Parallel Processing Cookbook](docs/parallel-processing-cookbook.md) | aRFC & SPTA patterns, throttling, LUW rules, the cloud alternative |
 | [API Usage Cookbook](docs/api-usage-cookbook.md) | released replacements cheat-sheet + the released-wrapper pattern |
