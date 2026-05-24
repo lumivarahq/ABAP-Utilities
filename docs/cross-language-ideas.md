@@ -66,3 +66,46 @@ reuse and cherry-pick.
 Treat abaplint/ATC findings as a backlog with autofixes (`npm run lint:fix`,
 ADT Quick Fixes) — the same "fix the linter, then the warnings" discipline other
 languages use to keep code bases modern.
+
+## 14. Optional / "Maybe" instead of sy-subrc dances
+Table expressions express absence cleanly: `itab[ key = k ]-field optional`
+returns the value or its initial; `line_exists( )` / `line_index( )` replace
+`READ TABLE ... sy-subrc`. (Like Optional/Maybe in Java/Kotlin/Rust.)
+
+## 15. Pattern matching with `COND` / `SWITCH`
+Expression-based branching instead of long `IF`/`CASE` blocks that assign a
+variable:
+```abap
+data(lv_tier) = cond #( when amount >= 1000 then `gold`
+                        when amount >= 100  then `silver`
+                        else `bronze` ).
+```
+
+## 16. Make illegal states unrepresentable
+Use enums (`TYPES BEGIN OF ENUM`), domains/fixed values and strong DDIC types so
+the compiler rejects bad values — the "type-driven design" idea from
+F#/Haskell/TypeScript.
+
+## 17. Externalised configuration (12-factor)
+Keep environment-specific values out of code: TVARVC / custom config via
+[`ZCL_AU_CONFIG`](../src/config/README.md), toggled per system — config as data,
+not transports.
+
+## 18. Idempotency keys
+For "exactly once" effects (postings, outbound calls), derive a stable key with
+[`ZCL_AU_HASH`](../src/hash/README.md) and skip if already processed — standard
+in payment/integration systems.
+
+## 19. Trunk-based development & conventional commits
+Short-lived branches, small PRs merged often, and a commit convention
+(`feat:`/`fix:`/`docs:`) that can drive changelogs and semantic versioning —
+exactly how this repo is developed (abapGit branches + CI).
+
+## 20. Observability: correlation ids + structured logs
+Stamp one correlation id (a UUID from [`ZCL_AU_GUID`](../src/guid/README.md)) on
+every log row of a run ([`ZCL_AU_LOGGER`](../src/logger/README.md)) and time the
+hot paths ([`ZCL_AU_TIMER`](../src/timer/README.md)) — tracing, ABAP-style.
+
+## 21. Scaffolding / code generation
+Use ADT's RAP generator wizards and `XCO` generation APIs to scaffold CDS+BO+UI,
+the way `nest g` / `rails generate` bootstrap modules — then hand-tune.

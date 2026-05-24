@@ -69,6 +69,9 @@ layers — the per-module READMEs tell you when to graduate to the full library.
 | [Locking](src/lock/README.md)    | `ZAU_LOCK` `/src/lock`       | `ZCL_AU_LOCK` | `ZCX_AU_ERROR`, ENQUEUE | ⚠️ |
 | [Background jobs](src/job/README.md) | `ZAU_JOB` `/src/job`     | `ZCL_AU_JOB` | `ZCX_AU_ERROR`, JOB FMs | ⚠️ |
 | [Doc generator](src/docgen/README.md) | `ZAU_DOCGEN` `/src/docgen` | `ZCL_AU_DOCGEN` (+ report `ZAU_DOCGEN`) | `ZCX_AU_ERROR` | ✅ |
+| [Clock](src/clock/README.md)     | `ZAU_CLOCK` `/src/clock`     | `ZIF_AU_CLOCK`, `ZCL_AU_CLOCK` | – | ✅ |
+| [Retry](src/retry/README.md)     | `ZAU_RETRY` `/src/retry`     | `ZIF_AU_RUNNABLE`, `ZCL_AU_RETRY` | `ZCX_AU_ERROR` | ⚠️ |
+| [Guard](src/guard/README.md)     | `ZAU_GUARD` `/src/guard`     | `ZCL_AU_GUARD` | `ZCX_AU_ERROR` | ✅ |
 | [Test data](src/test/README.md)  | `ZAU_TEST` `/src/test`       | `ZCL_AU_TEST_DATA` | – | ✅ |
 
 \* ✅ = uses only released APIs. ❌ = SAP GUI / classic Dynpro only. ⚠️ = depends on a class/framework that may need
@@ -147,6 +150,7 @@ before/after ABAP:
 | Guide | What it covers |
 |-------|----------------|
 | [Clean Core & ATC Cookbook](docs/clean-core-atc-cookbook.md) | top ATC findings (SAP-table writes, unreleased APIs, native SQL, sy-fields, Dynpro) with fixes |
+| [RAP / CDS / BTP Modernization](docs/rap-cds-modernization.md) | the target stack, migrating reports to CDS+RAP+Fiori, VDM, managed/unmanaged RAP, BTP specifics |
 | [Internal Tables Cookbook](docs/internal-tables-cookbook.md) | remove nested loops, sorted vs hashed, table expressions, `FOR`/`REDUCE`/`FILTER`/`GROUP BY` |
 | [Parallel Processing Cookbook](docs/parallel-processing-cookbook.md) | aRFC & SPTA patterns, throttling, LUW rules, the cloud alternative |
 | [API Usage Cookbook](docs/api-usage-cookbook.md) | released replacements cheat-sheet + the released-wrapper pattern |
@@ -154,6 +158,14 @@ before/after ABAP:
 | [Underused standard features](docs/underused-standard-features.md) | PCRE regex, meshes, enums, RTTI, XCO, codepage, test doubles, … |
 | [Cross-language ideas](docs/cross-language-ideas.md) | DI, TDD, CI linting, fluent APIs, result objects, feature toggles |
 | [Local AI review with Ollama](docs/ollama-code-review.md) | free, offline LLM reviewer for your diffs (`tools/ollama-review.sh`) |
+
+## Architecture, scaling & "does it need splitting?"
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for the dependency policy, the cloud-vs-
+on-premise strategy, the verification approach, and a concrete answer to whether
+the repo should be trimmed or split (short version: stay single-repo of
+independent packages; group in docs as it grows; only spin a module into its own
+repo when it develops a real sub-ecosystem).
 
 ## Expanding the library
 

@@ -83,3 +83,49 @@ Instant, structured display of any variable/table while developing — beats
 ## 12. XCO (ABAP Cloud) — `xco_cp`, `xco_cp_json`, `xco_cp_time`
 The released, fluent standard library for JSON, time, strings, regex,
 repository access — the cloud-native toolbox.
+
+## 13. Advanced ABAP SQL — push work to the database
+Most "loop and aggregate in ABAP" code can be one statement:
+```abap
+select carrid,
+       sum( seatsocc ) as occ,
+       avg( seatsocc as decfloat34 ) as avg_occ,
+       row_number( ) over ( partition by carrid order by fldate ) as seqno
+  from sflight
+  group by carrid, fldate
+  into table @data(lt).
+" also: WITH (CTEs), CASE, UNION, string funcs, CAST, FILTER, division, EXISTS
+```
+
+## 14. CDS table functions + AMDP
+For set logic that ABAP SQL can't express, write an **AMDP** method
+(`... FOR HANA DATABASE PROCEDURE`) or a **CDS table function** so the work runs
+in HANA, not on the app server.
+
+## 15. Dynamic, type-safe programming — RTTC + ASSIGN COMPONENT
+Build data objects at runtime (`CREATE DATA ... TYPE HANDLE`), iterate unknown
+structures (`ASSIGN COMPONENT ... OF STRUCTURE`), call methods dynamically. This
+repo's `ZCL_AU_CSV` / `ZCL_AU_DOCGEN` are built on it — write generic framework
+code without code generation.
+
+## 16. Modern string built-ins
+`segment( )`, `substring_before/after/from/to( )`, `condense( ... )`,
+`to_mixed( )` / `from_mixed( )`, `escape( )`, `match( )`, `count( )` —
+expression-level string handling that replaces `SPLIT`/`SHIFT`/`REPLACE` blocks.
+
+## 17. `cl_abap_gzip` / `cl_abap_zip`
+In-memory (de)compression and archive handling without temp files
+(see [`ZCL_AU_ZIP`](../src/zip/README.md)).
+
+## 18. CDS access control (DCL)
+Declarative row-level authorization (`@AccessControl.authorizationCheck`,
+`define role`) — authorization without `AUTHORITY-CHECK` scattered in code.
+
+## 19. Resumable exceptions (`RESUMABLE` / `RETRY`)
+Raise a resumable exception and let the handler `RESUME` after fixing the cause —
+useful for "ask once, continue" flows.
+
+## 20. Checkpoint groups & `ASSERT` (SAAB)
+Ship assertions/log-points that are inactive in production but can be switched on
+per user/system without a transport — safe instrumentation for hard-to-reproduce
+issues.

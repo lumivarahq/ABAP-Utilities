@@ -122,3 +122,30 @@ non-released types. Depend only on released CDS/types/APIs.
   remediation effort, and links SAP Notes (e.g. 2215424, 2198647, 2431747 cover
   the bulk of conversion findings).
 - For the rest, the **released-wrapper pattern** (§3) localises the exemption.
+
+---
+
+## More common findings (quick fixes)
+
+| Finding | Before | After |
+|---------|--------|-------|
+| Obsolete `MOVE` | `move a to b.` | `b = a.` |
+| Header lines / `OCCURS` | `data itab occurs 0 with header line.` | `data itab type standard table of ...` + work area |
+| `SELECT *` | `select * from t ...` | select an explicit field list |
+| `SELECT ... ENDSELECT` loop | row-by-row loop | `... into table @data(lt)` (one round trip) |
+| `SELECT` in a `LOOP` | nested DB reads | read once, look up in memory (see internal-tables cookbook) |
+| Classic exceptions | `raise xyz.` / `sy-subrc` only | class-based exceptions (`ZCX_AU_ERROR`) |
+| `FORM`/`PERFORM` | procedural subroutines | methods on a class |
+| `WRITE` lists / `CALL SCREEN` | classic UI | ALV/SALV (on-prem) or CDS+RAP+Fiori |
+| `TABLES` / `TYPE-POOLS` | global work areas / pools | local data + types/interfaces |
+| `CLIENT SPECIFIED` / hard-coded `MANDT` | manual client handling | let the framework handle the client |
+| Hard-coded language / file paths | `'/usr/sap/...'`, `'EN'` | config (`ZCL_AU_CONFIG`) / released context |
+| `COMMIT WORK` in a method library | commit deep in reusable code | commit only at the top transactional boundary |
+
+## Governance tips
+- Pin the package's **ABAP language version** to *ABAP for Cloud Development* on
+  new objects so violations fail at compile time, not just in ATC.
+- Run ATC centrally (Cloud ATC on BTP) against the dev systems; treat **Prio 1/2**
+  as build-breakers.
+- Exempt only via the **released-wrapper** (§3), and track exemptions so they
+  shrink as SAP releases more APIs.
