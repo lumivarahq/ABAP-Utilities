@@ -1,0 +1,142 @@
+# ABAP & RAP Utilities
+
+A **plug-and-play, expandable** collection of generic ABAP / RAP utilities for
+modern SAP development teams (ABAP on-premise, S/4HANA, and — where noted —
+ABAP Cloud / clean core).
+
+Every utility is:
+
+- **Self-contained** – almost all utilities are a single class with **zero
+  project dependencies**, so you can grab just the one you need.
+- **Cherry-pickable into a transport** – the repository is split into one
+  abapGit sub-package per utility. You can pull (or copy) only the folder you
+  want and assign only those objects to your transport request — you never have
+  to take the whole repository. See [Install](#install).
+- **Documented** – each module folder has its own `README.md` with a how-to and
+  copy-paste examples.
+- **Tested** – core utilities ship with ABAP Unit tests, and the whole tree is
+  verified with [abaplint](https://abaplint.org) in CI.
+
+---
+
+## Why this repo exists (and what it deliberately does *not* reinvent)
+
+Some problems are already solved extremely well by mature community projects.
+This library **references** those instead of duplicating them, and focuses on
+the small, generic helpers that every team otherwise rewrites from scratch.
+
+| Need | Use this established project instead | 
+|------|--------------------------------------|
+| Excel (XLSX) generation / parsing | [abap2xlsx](https://github.com/abap2xlsx/abap2xlsx) |
+| Full-featured JSON (cloud-ready, mutable document) | [ajson](https://github.com/sbcgua/ajson) |
+| Rich application logging UI / framework | [ABAP Logger](https://github.com/ABAP-Logger/ABAP-Logger) |
+| Test data from spreadsheets / mocking DB | [mockup_loader](https://github.com/sbcgua/mockup_loader) |
+| Git client inside the system | [abapGit](https://github.com/abapGit/abapGit) |
+| Curated index of open-source ABAP | [dotabap.org](https://dotabap.org) · [awesome-abap](https://github.com/sbcgua/awesome-abap) · [abap-florilegium](https://github.com/zenrosadira/abap-florilegium) |
+
+The thin wrappers here (e.g. `ZCL_AU_JSON`, `ZCL_AU_LOGGER`) are convenience
+layers — the per-module READMEs tell you when to graduate to the full library.
+
+---
+
+## Utility catalog
+
+| Module | Package / folder | Object(s) | Depends on | Cloud-ready* |
+|--------|------------------|-----------|------------|:---:|
+| [Error](src/error/README.md)     | `ZAU_ERROR` `/src/error`     | `ZCX_AU_ERROR` | – | ✅ |
+| [String](src/string/README.md)   | `ZAU_STRING` `/src/string`   | `ZCL_AU_STRING` | – | ✅ |
+| [Date](src/date/README.md)       | `ZAU_DATE` `/src/date`       | `ZCL_AU_DATE` | – | ✅ |
+| [Number](src/number/README.md)   | `ZAU_NUMBER` `/src/number`   | `ZCL_AU_NUMBER` | – | ✅ |
+| [GUID](src/guid/README.md)       | `ZAU_GUID` `/src/guid`       | `ZCL_AU_GUID` | – | ✅ |
+| [CSV](src/csv/README.md)         | `ZAU_CSV` `/src/csv`         | `ZCL_AU_CSV` | – | ✅ |
+| [Message](src/message/README.md) | `ZAU_MESSAGE` `/src/message` | `ZCL_AU_MESSAGE` | – | ✅ |
+| [JSON](src/json/README.md)       | `ZAU_JSON` `/src/json`       | `ZCL_AU_JSON` | `/UI2/CL_JSON` | ⚠️ |
+| [Logger](src/logger/README.md)   | `ZAU_LOGGER` `/src/logger`   | `ZIF_AU_LOG`, `ZCL_AU_LOGGER` | `ZCX_AU_ERROR`, BAL | ⚠️ |
+| [RAP](src/rap/README.md)         | `ZAU_RAP` `/src/rap`         | `ZCL_AU_RAP_MSG` | RAP runtime | ✅ |
+| [Test data](src/test/README.md)  | `ZAU_TEST` `/src/test`       | `ZCL_AU_TEST_DATA` | – | ✅ |
+
+\* ✅ = uses only released APIs. ⚠️ = depends on a class/framework that may need
+checking in ABAP Cloud (see the module README for the cloud-safe alternative).
+
+---
+
+## Install
+
+### Prerequisites
+
+- [abapGit](https://docs.abapgit.org) installed in your system.
+- A Z/Y customer package to import into.
+
+### Option A — Whole library (online repository)
+
+1. abapGit ➜ *New Online* ➜ this repository URL.
+2. Target package e.g. `ZAU` (a package you own).
+3. *Pull*. abapGit recreates the sub-packages using **your** package as the
+   prefix (folder `string` ➜ sub-package `ZAU_STRING`, etc.) thanks to
+   `FOLDER_LOGIC = PREFIX` in [`.abapgit.xml`](.abapgit.xml).
+4. Assign the objects to your transport when prompted.
+
+### Option B — Cherry-pick a single utility into your transport ⭐
+
+Because each utility lives in its own folder and is dependency-free, you can take
+*only* what you need:
+
+1. Open the module folder you want, e.g. [`src/string`](src/string).
+2. In your system, create (or reuse) one class with the source of
+   `*.clas.abap` — for `ZCL_AU_STRING` that is one global class, no includes
+   except the optional test include.
+3. Activate and assign **only that class** to your transport request.
+
+> The per-module README lists the **exact object list** and any dependency, so
+> you know precisely what goes into your TR — never the whole repo.
+
+For the two modules that have a dependency (`Logger` ➜ `ZCX_AU_ERROR`), grab the
+`Error` module first; everything else is standalone.
+
+### Naming / namespace
+
+Objects use the prefix `ZCL_AU_` / `ZIF_AU_` / `ZCX_AU_`. If your team uses a
+different prefix or a reserved namespace, rename on import (find & replace in the
+sources, or use abapGit's repo-level rename) — the utilities have no hard-coded
+references to their own names.
+
+---
+
+## Verify / build
+
+The whole source tree is linted with abaplint:
+
+```bash
+npm install      # installs @abaplint/cli
+npm run lint     # abaplint, configured by abaplint.json
+```
+
+ABAP Unit tests live next to each class (`*.clas.testclasses.abap`). Run them in
+ADT (*Run As ➜ ABAP Unit Test*) or via `abapGit` ➜ the system's unit runner once
+the objects are activated in a real system.
+
+> **Note on verification scope:** abaplint statically parses and style-checks the
+> code without an SAP backend, so it cannot resolve the standard SAP class
+> library or execute ABAP Unit. Activation and the unit tests must be run on a
+> real ABAP system. Every utility was written against released/standard APIs and
+> documents its dependencies.
+
+---
+
+## Expanding the library
+
+Adding a new utility is intentionally mechanical — see
+[CONTRIBUTING.md](CONTRIBUTING.md). In short:
+
+1. `mkdir src/<your-tool>` and add a `package.devc.xml`.
+2. Add `zcl_au_<your_tool>.clas.abap` + `.clas.xml` (+ optional
+   `.clas.testclasses.abap`).
+3. Add a `README.md` for the module following the standard template.
+4. Add a row to the catalog table above.
+5. `npm run lint` must stay green.
+
+---
+
+## License
+
+[MIT](LICENSE) — use it, ship it, change it.

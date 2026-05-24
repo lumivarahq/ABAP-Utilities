@@ -1,0 +1,23 @@
+{
+  "name": "abap-utilities",
+  "version": "0.1.0",
+  "description": "Plug-and-play, expandable ABAP & RAP utility library for modern SAP development teams.",
+  "private": true,
+  "scripts": {
+    "lint": "abaplint",
+    "lint:fix": "abaplint --fix"
+  },
+  "devDependencies": {
+    "@abaplint/cli": "^2"
+  },
+  "keywords": [
+    "abap",
+    "rap",
+    "sap",
+    "s4hana",
+    "abapgit",
+    "utilities",
+    "clean-core"
+  ],
+  "license": "MIT"
+}
