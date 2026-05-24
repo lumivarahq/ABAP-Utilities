@@ -53,6 +53,7 @@ the ⚠️/❌ ones, and the **released replacement** to use in the cloud.
 | lock    | generic `ENQUEUE`/`DEQUEUE` | a lock object's released `ENQUEUE_*`/`DEQUEUE_*` |
 | retry   | `WAIT UP TO n SECONDS` | call with `iv_wait_seconds = 0`, or RAP async patterns |
 | timer   | `cl_abap_runtime` (release state unconfirmed) | diff two `GET TIME STAMP` values / `ZIF_AU_CLOCK` |
+| profiler | `GET RUN TIME` in start/stop (`record`/`report` are cloud-safe) | time steps with `CL_ABAP_RUNTIME`/timestamps and call `record( )` |
 | text    | `READ_TEXT`/`SAVE_TEXT` + `sy-langu` default | model long text as a released entity (object-specific) |
 | fiori (`ZCL_AU_FIORI_FROM_ALV`) | LVC field-catalog type | on cloud seed fields with `ZCL_AU_FIORI_GEN=>fields_from_structure` |
 
