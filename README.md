@@ -37,6 +37,10 @@ the small, generic helpers that every team otherwise rewrites from scratch.
 The thin wrappers here (e.g. `ZCL_AU_JSON`, `ZCL_AU_LOGGER`) are convenience
 layers — the per-module READMEs tell you when to graduate to the full library.
 
+**Before building anything, search [dotabap.org](https://dotabap.org/).** See
+[docs/related-projects.md](docs/related-projects.md) for a problem ➜ project map
+(Excel, JSON, UI5, RTTI, maps, linting, …) so you reuse instead of reinvent.
+
 ---
 
 ## Utility catalog
@@ -63,7 +67,7 @@ layers — the per-module READMEs tell you when to graduate to the full library.
 | [Base64](src/base64/README.md)   | `ZAU_BASE64` `/src/base64`   | `ZCL_AU_BASE64` | – | ✅ |
 | [Hash](src/hash/README.md)       | `ZAU_HASH` `/src/hash`       | `ZCL_AU_HASH` | `ZCX_AU_ERROR` | ⚠️ |
 | [Zip](src/zip/README.md)         | `ZAU_ZIP` `/src/zip`         | `ZCL_AU_ZIP` | `ZCX_AU_ERROR` | ⚠️ |
-| [Stopwatch](src/timer/README.md) | `ZAU_TIMER` `/src/timer`     | `ZCL_AU_TIMER` | – | ✅ |
+| [Stopwatch](src/timer/README.md) | `ZAU_TIMER` `/src/timer`     | `ZCL_AU_TIMER` | – | ⚠️ |
 | [Config/toggles](src/config/README.md) | `ZAU_CONFIG` `/src/config` | `ZCL_AU_CONFIG` | TVARVC | ⚠️ |
 | [App-server files](src/dataset/README.md) | `ZAU_DATASET` `/src/dataset` | `ZCL_AU_DATASET` | `ZCX_AU_ERROR`, OPEN DATASET | ❌ |
 | [Locking](src/lock/README.md)    | `ZAU_LOCK` `/src/lock`       | `ZCL_AU_LOCK` | `ZCX_AU_ERROR`, ENQUEUE | ⚠️ |
@@ -74,8 +78,14 @@ layers — the per-module READMEs tell you when to graduate to the full library.
 | [Guard](src/guard/README.md)     | `ZAU_GUARD` `/src/guard`     | `ZCL_AU_GUARD` | `ZCX_AU_ERROR` | ✅ |
 | [Test data](src/test/README.md)  | `ZAU_TEST` `/src/test`       | `ZCL_AU_TEST_DATA` | – | ✅ |
 
-\* ✅ = uses only released APIs. ❌ = SAP GUI / classic Dynpro only. ⚠️ = depends on a class/framework that may need
-checking in ABAP Cloud (see the module README for the cloud-safe alternative).
+\* **Cloud-ready** = is this object usable in *ABAP for Cloud Development* (Clean
+Core)? ✅ = uses only released APIs / cloud-enabled language to the best of our
+knowledge. ⚠️ = depends on a class/framework whose release state must be checked
+(the module README names the released alternative). ❌ = SAP GUI / classic Dynpro
+or statements (`OPEN DATASET`, dynamic `SUBMIT`, …) with no cloud equivalent.
+**Final proof is always ATC `CLOUD_READINESS` on your target** — see the
+[Clean Core readiness matrix](docs/clean-core-readiness.md) for the per-object
+audit (which exact API blocks each ⚠️/❌ and its replacement).
 
 ---
 
@@ -157,6 +167,8 @@ before/after ABAP:
 | [Auto-documentation](docs/auto-documentation.md) | ABAP Doc, enforcing it in CI, generating docs |
 | [Underused standard features](docs/underused-standard-features.md) | PCRE regex, meshes, enums, RTTI, XCO, codepage, test doubles, … |
 | [Cross-language ideas](docs/cross-language-ideas.md) | DI, TDD, CI linting, fluent APIs, result objects, feature toggles |
+| [Clean Core readiness matrix](docs/clean-core-readiness.md) | per-object audit: cloud-safe set, the API blocking each ⚠️/❌, and its released replacement |
+| [Related projects](docs/related-projects.md) | "use this instead" map to established dotabap projects (don't reinvent) |
 | [Local AI review with Ollama](docs/ollama-code-review.md) | free, offline LLM reviewer for your diffs (`tools/ollama-review.sh`) |
 
 ## Architecture, scaling & "does it need splitting?"

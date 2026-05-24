@@ -22,7 +22,8 @@ zcl_au_date=>is_weekend( '20260524' ).                                 "abap_tru
 zcl_au_date=>workdays_between( iv_from = '20260525' iv_to = '20260531' ). "5
 zcl_au_date=>to_iso( '20260524' ).                                     "2026-05-24
 zcl_au_date=>from_iso( `2026-05-24` ).                                 "20260524
-zcl_au_date=>age( iv_birthday = '19900101' ).                          "completed years today
+zcl_au_date=>age( iv_birthday = '19900101'
+                  iv_on       = zcl_au_context=>today( ) ).            "completed years today
 
 data(lv_ts)  = zcl_au_date=>now( ).                                    "UTC timestampl
 data(ls_dt)  = zcl_au_date=>timestamp_to_date_time( iv_timestamp = lv_ts

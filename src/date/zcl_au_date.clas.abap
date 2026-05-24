@@ -89,11 +89,13 @@ class zcl_au_date definition
       returning
         value(rv_date)   type d.
 
-    "! Age in completed years on a given key date (default: today).
+    "! Age in completed years on a given key date. The key date is explicit (no
+    "! sy-datum default) so the class stays clean-core safe and testable - pass
+    "! ZCL_AU_CONTEXT=>today( ) for "today".
     class-methods age
       importing
         !iv_birthday   type d
-        !iv_on         type d default sy-datum
+        !iv_on         type d
       returning
         value(rv_age)  type i.
 
