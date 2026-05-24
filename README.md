@@ -68,6 +68,7 @@ layers — the per-module READMEs tell you when to graduate to the full library.
 | [Hash](src/hash/README.md)       | `ZAU_HASH` `/src/hash`       | `ZCL_AU_HASH` | `ZCX_AU_ERROR` | ⚠️ |
 | [Zip](src/zip/README.md)         | `ZAU_ZIP` `/src/zip`         | `ZCL_AU_ZIP` | `ZCX_AU_ERROR` | ⚠️ |
 | [Stopwatch](src/timer/README.md) | `ZAU_TIMER` `/src/timer`     | `ZCL_AU_TIMER` | – | ⚠️ |
+| [Profiler (SAT/SE30-lite)](src/profiler/README.md) | `ZAU_PROFILER` `/src/profiler` | `ZCL_AU_PROFILER` | – | ⚠️ |
 | [Config/toggles](src/config/README.md) | `ZAU_CONFIG` `/src/config` | `ZCL_AU_CONFIG` | TVARVC | ⚠️ |
 | [Feature flags](src/featureflag/README.md) | `ZAU_FEATUREFLAG` `/src/featureflag` | `ZIF_AU_FEATURE_FLAG`, `ZCL_AU_FEATURE_FLAG` | – | ✅ |
 | [Safe dynamic SQL](src/dynsql/README.md) | `ZAU_DYNSQL` `/src/dynsql` | `ZCL_AU_DYN_SQL` | `ZCX_AU_ERROR` | ✅ |
@@ -168,6 +169,7 @@ before/after ABAP:
 | [Systemic vs. dev-team scope](docs/systemic-vs-dev-scope.md) | which "Part 2" problems a dev team can fix (with what) vs. what's vendor/licensing/org |
 | [Engineering pitfalls cookbook](docs/engineering-pitfalls-cookbook.md) | number ranges, update task, enqueue scoping, job catalog, customizing-as-code, sy-fields, conversions |
 | [Delivery metrics & changelog](docs/dev-metrics.md) | rough DORA proxies + Conventional-Commits changelog from git (`tools/dev-metrics.js`) |
+| [Performance profiling](docs/performance-profiling-cookbook.md) | find the slowest program/SQL — `ZCL_AU_PROFILER` (instrument) + ST03N/STAD/SAT/ST05/SQLM (no code) |
 | [Dev workflow](docs/dev-workflow.md) | git hooks, Conventional Commits, CI gates, branch/PR flow, ADR/postmortem/review templates |
 | [Clean Core & ATC Cookbook](docs/clean-core-atc-cookbook.md) | top ATC findings (SAP-table writes, unreleased APIs, native SQL, sy-fields, Dynpro) with fixes |
 | [RAP / CDS / BTP Modernization](docs/rap-cds-modernization.md) | the target stack, migrating reports to CDS+RAP+Fiori, VDM, managed/unmanaged RAP, BTP specifics |

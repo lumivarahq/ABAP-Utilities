@@ -37,6 +37,7 @@ Generated from the ABAP sources by `tools/gen-api-docs.js` — the offline/CI co
 | [ZCL_AU_MESSAGE](zcl_au_message.md) | `message` | AU - Message handling utilities |
 | [ZCL_AU_NUMBER](zcl_au_number.md) | `number` | AU - Number and amount utilities |
 | [ZCL_AU_NUMRANGE](zcl_au_numrange.md) | `numrange` | AU - Number range helper |
+| [ZCL_AU_PROFILER](zcl_au_profiler.md) | `profiler` | AU - Lightweight runtime profiler |
 | [ZCL_AU_RAP_MSG](zcl_au_rap_msg.md) | `rap` | AU - RAP message factory |
 | [ZCL_AU_RETRY](zcl_au_retry.md) | `retry` | AU - Retry policy (resilience) |
 | [ZIF_AU_RUNNABLE](zif_au_runnable.md) | `retry` | AU - Runnable unit of work |
