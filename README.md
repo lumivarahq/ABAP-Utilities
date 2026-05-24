@@ -59,6 +59,16 @@ layers — the per-module READMEs tell you when to graduate to the full library.
 | [Email](src/email/README.md)     | `ZAU_EMAIL` `/src/email`     | `ZCL_AU_EMAIL` | `ZCX_AU_ERROR`, BCS | ⚠️ |
 | [HTTP/REST](src/http/README.md)  | `ZAU_HTTP` `/src/http`       | `ZCL_AU_HTTP` | `ZCX_AU_ERROR` | ✅ |
 | [Number range](src/numrange/README.md) | `ZAU_NUMRANGE` `/src/numrange` | `ZCL_AU_NUMRANGE` | `ZCX_AU_ERROR` | ⚠️ |
+| [Context](src/context/README.md) | `ZAU_CONTEXT` `/src/context` | `ZCL_AU_CONTEXT` | – | ✅ |
+| [Base64](src/base64/README.md)   | `ZAU_BASE64` `/src/base64`   | `ZCL_AU_BASE64` | – | ✅ |
+| [Hash](src/hash/README.md)       | `ZAU_HASH` `/src/hash`       | `ZCL_AU_HASH` | `ZCX_AU_ERROR` | ⚠️ |
+| [Zip](src/zip/README.md)         | `ZAU_ZIP` `/src/zip`         | `ZCL_AU_ZIP` | `ZCX_AU_ERROR` | ⚠️ |
+| [Stopwatch](src/timer/README.md) | `ZAU_TIMER` `/src/timer`     | `ZCL_AU_TIMER` | – | ✅ |
+| [Config/toggles](src/config/README.md) | `ZAU_CONFIG` `/src/config` | `ZCL_AU_CONFIG` | TVARVC | ⚠️ |
+| [App-server files](src/dataset/README.md) | `ZAU_DATASET` `/src/dataset` | `ZCL_AU_DATASET` | `ZCX_AU_ERROR`, OPEN DATASET | ❌ |
+| [Locking](src/lock/README.md)    | `ZAU_LOCK` `/src/lock`       | `ZCL_AU_LOCK` | `ZCX_AU_ERROR`, ENQUEUE | ⚠️ |
+| [Background jobs](src/job/README.md) | `ZAU_JOB` `/src/job`     | `ZCL_AU_JOB` | `ZCX_AU_ERROR`, JOB FMs | ⚠️ |
+| [Doc generator](src/docgen/README.md) | `ZAU_DOCGEN` `/src/docgen` | `ZCL_AU_DOCGEN` (+ report `ZAU_DOCGEN`) | `ZCX_AU_ERROR` | ✅ |
 | [Test data](src/test/README.md)  | `ZAU_TEST` `/src/test`       | `ZCL_AU_TEST_DATA` | – | ✅ |
 
 \* ✅ = uses only released APIs. ❌ = SAP GUI / classic Dynpro only. ⚠️ = depends on a class/framework that may need
@@ -138,6 +148,7 @@ before/after ABAP:
 |-------|----------------|
 | [Clean Core & ATC Cookbook](docs/clean-core-atc-cookbook.md) | top ATC findings (SAP-table writes, unreleased APIs, native SQL, sy-fields, Dynpro) with fixes |
 | [Internal Tables Cookbook](docs/internal-tables-cookbook.md) | remove nested loops, sorted vs hashed, table expressions, `FOR`/`REDUCE`/`FILTER`/`GROUP BY` |
+| [Parallel Processing Cookbook](docs/parallel-processing-cookbook.md) | aRFC & SPTA patterns, throttling, LUW rules, the cloud alternative |
 | [API Usage Cookbook](docs/api-usage-cookbook.md) | released replacements cheat-sheet + the released-wrapper pattern |
 | [Auto-documentation](docs/auto-documentation.md) | ABAP Doc, enforcing it in CI, generating docs |
 | [Underused standard features](docs/underused-standard-features.md) | PCRE regex, meshes, enums, RTTI, XCO, codepage, test doubles, … |
