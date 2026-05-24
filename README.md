@@ -54,6 +54,10 @@ layers — the per-module READMEs tell you when to graduate to the full library.
 | [GUID](src/guid/README.md)       | `ZAU_GUID` `/src/guid`       | `ZCL_AU_GUID` | – | ✅ |
 | [CSV](src/csv/README.md)         | `ZAU_CSV` `/src/csv`         | `ZCL_AU_CSV` | – | ✅ |
 | [Internal tables](src/itab/README.md) | `ZAU_ITAB` `/src/itab`  | `ZCL_AU_ITAB` | – | ✅ |
+| [Validation](src/validate/README.md) | `ZAU_VALIDATE` `/src/validate` | `ZCL_AU_VALIDATE` | – | ✅ |
+| [Diff (LCS)](src/diff/README.md) | `ZAU_DIFF` `/src/diff` | `ZCL_AU_DIFF` | – | ✅ |
+| [Batch/chunking](src/batch/README.md) | `ZAU_BATCH` `/src/batch` | `ZCL_AU_BATCH` | `ZCX_AU_ERROR` | ✅ |
+| [Semantic version](src/semver/README.md) | `ZAU_SEMVER` `/src/semver` | `ZCL_AU_SEMVER` | `ZCX_AU_ERROR` | ✅ |
 | [Message](src/message/README.md) | `ZAU_MESSAGE` `/src/message` | `ZCL_AU_MESSAGE` | – | ✅ |
 | [JSON](src/json/README.md)       | `ZAU_JSON` `/src/json`       | `ZCL_AU_JSON` | `/UI2/CL_JSON` | ⚠️ |
 | [Logger](src/logger/README.md)   | `ZAU_LOGGER` `/src/logger`   | `ZIF_AU_LOG`, `ZCL_AU_LOGGER` | `ZCX_AU_ERROR`, BAL | ⚠️ |

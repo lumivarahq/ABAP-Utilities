@@ -8,6 +8,7 @@ Generated from the ABAP sources by `tools/gen-api-docs.js` — the offline/CI co
 | [ZCL_AU_ALV](zcl_au_alv.md) | `alv` | AU - ALV (SALV) display helper |
 | [ZIF_AU_ALV_HANDLER](zif_au_alv_handler.md) | `alv` | AU - ALV interaction handler |
 | [ZCL_AU_BASE64](zcl_au_base64.md) | `base64` | AU - Base64 encode/decode |
+| [ZCL_AU_BATCH](zcl_au_batch.md) | `batch` | AU - Batch / package processing helpers |
 | [ZCL_AU_CLOCK](zcl_au_clock.md) | `clock` | AU - Clock (system and fixed) |
 | [ZIF_AU_CLOCK](zif_au_clock.md) | `clock` | AU - Clock abstraction |
 | [ZCL_AU_CONFIG](zcl_au_config.md) | `config` | AU - Config / feature toggles (TVARVC) |
@@ -15,6 +16,7 @@ Generated from the ABAP sources by `tools/gen-api-docs.js` — the offline/CI co
 | [ZCL_AU_CSV](zcl_au_csv.md) | `csv` | AU - CSV reader and writer (RTTI based) |
 | [ZCL_AU_DATASET](zcl_au_dataset.md) | `dataset` | AU - Application server file I/O |
 | [ZCL_AU_DATE](zcl_au_date.md) | `date` | AU - Date and time utilities |
+| [ZCL_AU_DIFF](zcl_au_diff.md) | `diff` | AU - Text/table diff (LCS) |
 | [ZCL_AU_DOCGEN](zcl_au_docgen.md) | `docgen` | AU - Markdown API doc generator |
 | [ZCL_AU_DYN_SQL](zcl_au_dyn_sql.md) | `dynsql` | AU - Safe dynamic SQL helpers |
 | [ZCL_AU_EMAIL](zcl_au_email.md) | `email` | AU - Email sender (BCS) |
@@ -41,9 +43,11 @@ Generated from the ABAP sources by `tools/gen-api-docs.js` — the offline/CI co
 | [ZCL_AU_RAP_MSG](zcl_au_rap_msg.md) | `rap` | AU - RAP message factory |
 | [ZCL_AU_RETRY](zcl_au_retry.md) | `retry` | AU - Retry policy (resilience) |
 | [ZIF_AU_RUNNABLE](zif_au_runnable.md) | `retry` | AU - Runnable unit of work |
+| [ZCL_AU_SEMVER](zcl_au_semver.md) | `semver` | AU - Semantic version parse/compare |
 | [ZCL_AU_STRING](zcl_au_string.md) | `string` | AU - String utilities |
 | [ZCL_AU_TEST_DATA](zcl_au_test_data.md) | `test` | AU - Test data builder |
 | [ZCL_AU_TEXT](zcl_au_text.md) | `text` | AU - SAPscript long text helper |
 | [ZCL_AU_TIMER](zcl_au_timer.md) | `timer` | AU - Runtime stopwatch |
+| [ZCL_AU_VALIDATE](zcl_au_validate.md) | `validate` | AU - Validation helpers (email/Luhn/IBAN) |
 | [ZCL_AU_WRAP_GEN](zcl_au_wrap_gen.md) | `wrapper` | AU - Clean Core released-wrapper generator |
 | [ZCL_AU_ZIP](zcl_au_zip.md) | `zip` | AU - ZIP archive helper |
