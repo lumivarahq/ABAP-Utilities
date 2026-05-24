@@ -24,6 +24,10 @@ the ⚠️/❌ ones, and the **released replacement** to use in the cloud.
 | guid    | `ZCL_AU_GUID` | `cl_system_uuid` |
 | csv     | `ZCL_AU_CSV` | RTTI, `cl_abap_char_utilities` (newline/cr_lf are released) |
 | itab    | `ZCL_AU_ITAB` | `SORT`/`DELETE ADJACENT`/`CREATE DATA` |
+| validate | `ZCL_AU_VALIDATE` | string/regex only (email/Luhn/IBAN) |
+| diff    | `ZCL_AU_DIFF` | language only (LCS over string tables) |
+| batch   | `ZCL_AU_BATCH` | language only (index math / chunking) |
+| semver  | `ZCL_AU_SEMVER` | string parsing only |
 | message | `ZCL_AU_MESSAGE` | `MESSAGE … INTO`, `BAPIRET2`; `*_from_sy` read `sy-msg*` (set by `MESSAGE`) |
 | context | `ZCL_AU_CONTEXT` | `cl_abap_context_info` (the released sy-field replacement) |
 | base64  | `ZCL_AU_BASE64` | `cl_web_http_utility`, `cl_abap_conv_codepage` |
