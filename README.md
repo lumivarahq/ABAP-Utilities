@@ -49,11 +49,13 @@ layers — the per-module READMEs tell you when to graduate to the full library.
 | [Number](src/number/README.md)   | `ZAU_NUMBER` `/src/number`   | `ZCL_AU_NUMBER` | – | ✅ |
 | [GUID](src/guid/README.md)       | `ZAU_GUID` `/src/guid`       | `ZCL_AU_GUID` | – | ✅ |
 | [CSV](src/csv/README.md)         | `ZAU_CSV` `/src/csv`         | `ZCL_AU_CSV` | – | ✅ |
+| [Internal tables](src/itab/README.md) | `ZAU_ITAB` `/src/itab`  | `ZCL_AU_ITAB` | – | ✅ |
 | [Message](src/message/README.md) | `ZAU_MESSAGE` `/src/message` | `ZCL_AU_MESSAGE` | – | ✅ |
 | [JSON](src/json/README.md)       | `ZAU_JSON` `/src/json`       | `ZCL_AU_JSON` | `/UI2/CL_JSON` | ⚠️ |
 | [Logger](src/logger/README.md)   | `ZAU_LOGGER` `/src/logger`   | `ZIF_AU_LOG`, `ZCL_AU_LOGGER` | `ZCX_AU_ERROR`, BAL | ⚠️ |
 | [RAP](src/rap/README.md)         | `ZAU_RAP` `/src/rap`         | `ZCL_AU_RAP_MSG` | RAP runtime | ✅ |
-| [ALV (SALV)](src/alv/README.md)  | `ZAU_ALV` `/src/alv`         | `ZCL_AU_ALV` | – | ❌ |
+| [ALV (SALV)](src/alv/README.md)  | `ZAU_ALV` `/src/alv`         | `ZCL_AU_ALV` (+ `ZIF_AU_ALV_HANDLER`, `ZCL_AU_ALV_EVENTS` for events) | – | ❌ |
+| [SAPscript text](src/text/README.md) | `ZAU_TEXT` `/src/text`   | `ZCL_AU_TEXT` | `ZCX_AU_ERROR`, READ_TEXT | ⚠️ |
 | [Email](src/email/README.md)     | `ZAU_EMAIL` `/src/email`     | `ZCL_AU_EMAIL` | `ZCX_AU_ERROR`, BCS | ⚠️ |
 | [HTTP/REST](src/http/README.md)  | `ZAU_HTTP` `/src/http`       | `ZCL_AU_HTTP` | `ZCX_AU_ERROR` | ✅ |
 | [Number range](src/numrange/README.md) | `ZAU_NUMRANGE` `/src/numrange` | `ZCL_AU_NUMRANGE` | `ZCX_AU_ERROR` | ⚠️ |
@@ -126,6 +128,21 @@ the objects are activated in a real system.
 > documents its dependencies.
 
 ---
+
+## Cookbooks & guides (`docs/`)
+
+Guidance for the things that are *patterns*, not classes — each with copy-paste
+before/after ABAP:
+
+| Guide | What it covers |
+|-------|----------------|
+| [Clean Core & ATC Cookbook](docs/clean-core-atc-cookbook.md) | top ATC findings (SAP-table writes, unreleased APIs, native SQL, sy-fields, Dynpro) with fixes |
+| [Internal Tables Cookbook](docs/internal-tables-cookbook.md) | remove nested loops, sorted vs hashed, table expressions, `FOR`/`REDUCE`/`FILTER`/`GROUP BY` |
+| [API Usage Cookbook](docs/api-usage-cookbook.md) | released replacements cheat-sheet + the released-wrapper pattern |
+| [Auto-documentation](docs/auto-documentation.md) | ABAP Doc, enforcing it in CI, generating docs |
+| [Underused standard features](docs/underused-standard-features.md) | PCRE regex, meshes, enums, RTTI, XCO, codepage, test doubles, … |
+| [Cross-language ideas](docs/cross-language-ideas.md) | DI, TDD, CI linting, fluent APIs, result objects, feature toggles |
+| [Local AI review with Ollama](docs/ollama-code-review.md) | free, offline LLM reviewer for your diffs (`tools/ollama-review.sh`) |
 
 ## Expanding the library
 

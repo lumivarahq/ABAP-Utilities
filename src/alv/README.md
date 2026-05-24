@@ -59,9 +59,45 @@ lo_alv->display( ).
 | `set_column_title( io_alv, iv_column, iv_title )` | set all three column titles |
 | `hide_column( io_alv, iv_column )` | hide a column |
 
+## Event handling (optional)
+
+Add the two extra objects `ZIF_AU_ALV_HANDLER` + `ZCL_AU_ALV_EVENTS` to react to
+double-click / hotspot without writing SALV event boilerplate:
+
+```abap
+class lcl_report definition.
+  public section.
+    interfaces zif_au_alv_handler.
+    methods run.
+endclass.
+
+class lcl_report implementation.
+  method run.
+    data(lo_alv) = zcl_au_alv=>factory( changing ct_table = mt_data ).
+    " make a column clickable, then register the handler (this object)
+    lo_alv->get_columns( )->get_column( 'MATNR' ) ?? "...set hotspot via apply_lvc_fieldcat or set_cell_type
+    new zcl_au_alv_events( io_alv = lo_alv io_handler = me ).
+    lo_alv->display( ).
+  endmethod.
+
+  method zif_au_alv_handler~on_double_click.
+    message |Row { iv_row } column { iv_column }| type 'I'.
+  endmethod.
+
+  method zif_au_alv_handler~on_link_click.
+    " hotspot clicked
+  endmethod.
+endclass.
+```
+
+You don't need to keep the `ZCL_AU_ALV_EVENTS` instance — the SALV registration
+holds a reference. (Link-click only fires for columns whose cell type is hotspot,
+which `apply_lvc_fieldcat` sets from `fcat-hotspot`.)
+
 ## Tests
 SALV requires a GUI session, so this module is verified by activation + manual
-run rather than ABAP Unit.
+run rather than ABAP Unit. The event adapter is thin (it just forwards to your
+handler), so unit-test your handler logic directly.
 
 ## Extending
 Add helpers for events (double-click/hotspot via `get_event( )`), top-of-page

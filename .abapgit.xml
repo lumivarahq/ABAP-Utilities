@@ -17,6 +17,7 @@
      <item>/abaplint.json</item>
      <item>/.github/*</item>
      <item>/docs/*</item>
+     <item>/tools/*</item>
      <item>/src/**/README.md</item>
     </IGNORE>
    </DATA>
