@@ -165,6 +165,9 @@ before/after ABAP:
 | Guide | What it covers |
 |-------|----------------|
 | [Anti-patterns → remediation playbook](docs/anti-patterns-playbook.md) | **start here** — every common ABAP bad habit mapped to a tool here, an external project, or a how-to |
+| [Systemic vs. dev-team scope](docs/systemic-vs-dev-scope.md) | which "Part 2" problems a dev team can fix (with what) vs. what's vendor/licensing/org |
+| [Engineering pitfalls cookbook](docs/engineering-pitfalls-cookbook.md) | number ranges, update task, enqueue scoping, job catalog, customizing-as-code, sy-fields, conversions |
+| [Delivery metrics & changelog](docs/dev-metrics.md) | rough DORA proxies + Conventional-Commits changelog from git (`tools/dev-metrics.js`) |
 | [Dev workflow](docs/dev-workflow.md) | git hooks, Conventional Commits, CI gates, branch/PR flow, ADR/postmortem/review templates |
 | [Clean Core & ATC Cookbook](docs/clean-core-atc-cookbook.md) | top ATC findings (SAP-table writes, unreleased APIs, native SQL, sy-fields, Dynpro) with fixes |
 | [RAP / CDS / BTP Modernization](docs/rap-cds-modernization.md) | the target stack, migrating reports to CDS+RAP+Fiori, VDM, managed/unmanaged RAP, BTP specifics |
