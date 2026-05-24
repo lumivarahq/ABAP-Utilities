@@ -6,7 +6,9 @@
   "scripts": {
     "lint": "abaplint",
     "lint:fix": "abaplint --fix",
-    "docs": "node tools/gen-api-docs.js"
+    "docs": "node tools/gen-api-docs.js",
+    "changelog": "node tools/dev-metrics.js --changelog docs/CHANGELOG.md",
+    "metrics": "node tools/dev-metrics.js"
   },
   "devDependencies": {
     "@abaplint/cli": "^2"

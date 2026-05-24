@@ -140,6 +140,19 @@ field guide to a concrete remedy. For each habit: a **tool in this library**, an
 | 9.25 InnerSource | 📘 [CONTRIBUTING](../CONTRIBUTING.md) (this repo's model) |
 | 9.26 AI assistants beyond autocomplete | ✅ [`tools/ollama-review.sh`](../tools/ollama-review.sh) · 📘 [ollama-code-review](ollama-code-review.md) |
 
+## Part 2 — systemic / structural (the field guide's second document)
+Most of *Part 2* is **systemic** (vendor strategy, licensing, market, governance,
+org) and **not fixable by a utility**. The dev-team-controllable slivers are
+covered here; the rest is explicitly out of scope.
+
+| Area | Dev-team remedy |
+|------|-----------------|
+| Engineering "hidden runtime" gaps (number ranges, update task, enqueue, jobs, customizing-as-code, sy-fields, conversions) | 📘 [engineering-pitfalls](engineering-pitfalls-cookbook.md) · ✅ numrange/lock/job/config/context |
+| No dependency manager / versioning / SBOM (§2.3, §9.16-17) | ✅ [.apack-manifest.xml](../.apack-manifest.xml) + semver |
+| No DORA data / no changelog (§9.5, §9.15) | ✅ [`tools/dev-metrics.js`](../tools/dev-metrics.js) → [dev-metrics](dev-metrics.md) |
+| Knowledge moat / bus factor (§16) | ✅ [ADRs](templates/adr-template.md) + [docgen](../src/docgen/README.md) + [api docs](api/README.md) |
+| Everything else (licensing, market, product strategy, org, compliance, auth) | ❌ out of dev-team scope — see [systemic-vs-dev-scope](systemic-vs-dev-scope.md) |
+
 ---
 
 ## Summary

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  APACK manifest — the abapGit-native package/dependency descriptor (the closest
+  ABAP has to npm/Maven: §2.3, §9.16 semantic versioning, §9.17 SBOM).
+  Bump VERSION on release (major.minor.patch); declare external dependencies
+  (e.g. ajson, abap2xlsx) under DEPENDENCIES so abapGit/APACK can pull them.
+-->
+<asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+ <asx:values>
+  <DATA>
+   <GROUP_ID>github.com/palimkarakshay</GROUP_ID>
+   <ARTIFACT_ID>abap-utilities</ARTIFACT_ID>
+   <VERSION>0.1.0</VERSION>
+   <GIT_URL>https://github.com/palimkarakshay/ABAP-Utilities.git</GIT_URL>
+   <DEPENDENCIES>
+    <!--
+      This library has no mandatory external ABAP dependencies. Optional
+      integrations (use the matching module's README) - declare here if you adopt them:
+      <item>
+       <GROUP_ID>github.com/sbcgua</GROUP_ID>
+       <ARTIFACT_ID>ajson</ARTIFACT_ID>
+       <GIT_URL>https://github.com/sbcgua/ajson.git</GIT_URL>
+       <VERSION>1.1.10</VERSION>
+       <TARGET_PACKAGE>$AJSON</TARGET_PACKAGE>
+      </item>
+    -->
+   </DEPENDENCIES>
+  </DATA>
+ </asx:values>
+</asx:abap>
