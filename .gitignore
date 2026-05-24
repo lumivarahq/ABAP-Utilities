@@ -3,6 +3,9 @@ node_modules/
 npm-debug.log*
 *.tgz
 
+# Generated on demand (npm run changelog) — not committed (would drift)
+docs/CHANGELOG.md
+
 # Editor / OS
 .DS_Store
 .idea/

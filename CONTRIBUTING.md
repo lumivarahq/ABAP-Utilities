@@ -16,6 +16,15 @@ utility is an independent, cherry-pickable unit. Please keep it that way.
    helpers expose an interface (`ZIF_AU_*`) so callers can mock them in tests.
 5. **Clean ABAP**: lower-case keywords, 2-space indentation, meaningful names,
    ABAP Doc (`"!`) on every public method.
+6. **Naming — house style (deliberate):** this library uses the classic
+   parameter/variable prefixes `iv_ / ev_ / cv_ / rv_ / it_ / et_ / rt_ / is_ /
+   rs_ / lv_ / lt_ / ls_ / lo_ / mo_ / mt_`. Clean ABAP discourages Hungarian
+   notation (see [docs/anti-patterns-playbook.md](docs/anti-patterns-playbook.md)
+   §1.13); we keep the prefixes **consistently** because they aid the
+   cherry-pick/standalone reading of one class out of context and match the
+   still-dominant convention in most customer code. **Pick one rule and be
+   consistent** — that is the actual win; if your team drops prefixes, do it
+   everywhere, not half-and-half.
 
 ## Folder / file layout for a new utility `foo`
 

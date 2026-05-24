@@ -25,6 +25,9 @@ npm run changelog      # (re)write docs/CHANGELOG.md from Conventional Commits
 - The changelog is only as good as the commit messages. Historic commits made
   before the commit-msg hook land under "Other".
 - Not a CI gate (git history changes every commit), so it never blocks a build.
+- `docs/CHANGELOG.md` is **generated on demand and git-ignored** — it is not
+  committed, because a committed changelog drifts the moment you add a commit.
+  Run `npm run changelog` to (re)produce it locally or in a release step.
 
 ## Scope note
 This is a **dev-team** instrument. Org-level delivery health (release cadence

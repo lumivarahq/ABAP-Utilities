@@ -18,6 +18,18 @@ on-premise-only modules — the cloud-released replacement.
 This keeps the cherry-pick promise true: the per-module README's "Depends on"
 line is the complete shopping list for a transport.
 
+## Error model (chosen, not accidental)
+Most utilities raise the shared `ZCX_AU_ERROR`. A few **fully standalone** ones
+deliberately propagate the relevant **standard** exception instead, so they carry
+*zero* repo dependency and can be cherry-picked entirely on their own:
+- `ZCL_AU_GUID` → `CX_UUID_ERROR`
+- `ZCL_AU_ALV` → `CX_SALV_MSG`
+- `ZCL_AU_RAP_MSG` → returns `IF_ABAP_BEHV_MESSAGE` (no raise)
+
+The rule of thumb: if wrapping the error would force a dependency on the error
+module for an otherwise dependency-free class, propagate the standard exception;
+otherwise raise `ZCX_AU_ERROR` for a uniform caller experience.
+
 ## Cloud readiness is a first-class axis
 Every module is tagged ✅ (released APIs only), ⚠️ (needs a cloud-released
 alternative, documented) or ❌ (SAP GUI / classic only). This lets a team adopt
