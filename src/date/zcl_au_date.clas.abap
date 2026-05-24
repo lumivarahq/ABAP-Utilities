@@ -189,6 +189,9 @@ class zcl_au_date implementation.
 
 
   method weekday.
+    " Days since a known Monday (2020-01-06), taken mod 7. ABAP MOD with a
+    " positive divisor always returns 0..6 (even for dates before the reference),
+    " so +1 maps Monday->1 ... Sunday->7 (ISO-8601) without any branching.
     rv_weekday = ( iv_date - gc_ref_monday ) mod 7 + 1.
   endmethod.
 

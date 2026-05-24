@@ -47,10 +47,14 @@ class zcl_au_config implementation.
 
 
   method get_range.
-    select sign, opti as option, low, high from tvarvc
+    " Read the raw TVARVC rows, then map TVARVC-OPTI to the range component
+    " OPTION (avoids relying on a SQL column alias named "option").
+    select sign, opti, low, high from tvarvc
       where name = @iv_name and type = 'S'
       order by numb
-      into corresponding fields of table @rt_range.
+      into table @data(lt_raw).
+
+    rt_range = corresponding #( lt_raw mapping option = opti ).
   endmethod.
 
 

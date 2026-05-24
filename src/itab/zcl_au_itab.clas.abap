@@ -37,11 +37,20 @@ class zcl_au_itab implementation.
 
 
   method count_distinct.
-    data lt_copy like it_table.
-    lt_copy = it_table.
-    sort lt_copy.
-    delete adjacent duplicates from lt_copy comparing all fields.
-    rv_count = lines( lt_copy ).
+    " Clone the table TYPE at runtime: CREATE DATA ... LIKE resolves the generic
+    " parameter's *dynamic* type (a static "DATA x LIKE it_table" would not
+    " compile, because the formal parameter's type is generic). We copy the rows
+    " into the clone so the caller's table is never modified.
+    data lr_copy type ref to data.
+    field-symbols <copy> type standard table.
+
+    create data lr_copy like it_table.
+    assign lr_copy->* to <copy>.
+    <copy> = it_table.
+
+    sort <copy>.
+    delete adjacent duplicates from <copy> comparing all fields.
+    rv_count = lines( <copy> ).
   endmethod.
 
 
