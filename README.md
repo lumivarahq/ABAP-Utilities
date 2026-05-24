@@ -73,6 +73,7 @@ layers — the per-module READMEs tell you when to graduate to the full library.
 | [Locking](src/lock/README.md)    | `ZAU_LOCK` `/src/lock`       | `ZCL_AU_LOCK` | `ZCX_AU_ERROR`, ENQUEUE | ⚠️ |
 | [Background jobs](src/job/README.md) | `ZAU_JOB` `/src/job`     | `ZCL_AU_JOB` | `ZCX_AU_ERROR`, JOB FMs | ⚠️ |
 | [Doc generator](src/docgen/README.md) | `ZAU_DOCGEN` `/src/docgen` | `ZCL_AU_DOCGEN` (+ report `ZAU_DOCGEN`) | `ZCX_AU_ERROR` | ✅ |
+| [Fiori scaffolding](src/fiori/README.md) | `ZAU_FIORI` `/src/fiori` | `ZCL_AU_FIORI_GEN` (+ `ZCL_AU_FIORI_FROM_ALV`) | `ZCX_AU_ERROR` | ✅ |
 | [Clock](src/clock/README.md)     | `ZAU_CLOCK` `/src/clock`     | `ZIF_AU_CLOCK`, `ZCL_AU_CLOCK` | – | ✅ |
 | [Retry](src/retry/README.md)     | `ZAU_RETRY` `/src/retry`     | `ZIF_AU_RUNNABLE`, `ZCL_AU_RETRY` | `ZCX_AU_ERROR` | ⚠️ |
 | [Guard](src/guard/README.md)     | `ZAU_GUARD` `/src/guard`     | `ZCL_AU_GUARD` | `ZCX_AU_ERROR` | ✅ |
@@ -161,6 +162,7 @@ before/after ABAP:
 |-------|----------------|
 | [Clean Core & ATC Cookbook](docs/clean-core-atc-cookbook.md) | top ATC findings (SAP-table writes, unreleased APIs, native SQL, sy-fields, Dynpro) with fixes |
 | [RAP / CDS / BTP Modernization](docs/rap-cds-modernization.md) | the target stack, migrating reports to CDS+RAP+Fiori, VDM, managed/unmanaged RAP, BTP specifics |
+| [Fiori Conversion Cookbook](docs/fiori-conversion-cookbook.md) | turn table maintenance (SM30), ALV reports and selection-screen reports into Fiori tiles (with `ZCL_AU_FIORI_GEN`) |
 | [Internal Tables Cookbook](docs/internal-tables-cookbook.md) | remove nested loops, sorted vs hashed, table expressions, `FOR`/`REDUCE`/`FILTER`/`GROUP BY` |
 | [Parallel Processing Cookbook](docs/parallel-processing-cookbook.md) | aRFC & SPTA patterns, throttling, LUW rules, the cloud alternative |
 | [API Usage Cookbook](docs/api-usage-cookbook.md) | released replacements cheat-sheet + the released-wrapper pattern |

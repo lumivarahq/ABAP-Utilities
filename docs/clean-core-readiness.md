@@ -32,6 +32,7 @@ the ⚠️/❌ ones, and the **released replacement** to use in the cloud.
 | clock   | `ZIF_AU_CLOCK`/`ZCL_AU_CLOCK` | `GET/CONVERT TIME STAMP` |
 | guard   | `ZCL_AU_GUARD` | language only |
 | docgen  | `ZCL_AU_DOCGEN` | RTTI (`cl_abap_typedescr`) — **the class only** |
+| fiori   | `ZCL_AU_FIORI_GEN` | RTTI + string building (emits CDS/RAP/SRVD source) |
 | test    | `ZCL_AU_TEST_DATA` | `cl_abap_random*` |
 
 ## Confirm-before-cloud / has a documented alternative (⚠️)
@@ -49,6 +50,7 @@ the ⚠️/❌ ones, and the **released replacement** to use in the cloud.
 | retry   | `WAIT UP TO n SECONDS` | call with `iv_wait_seconds = 0`, or RAP async patterns |
 | timer   | `cl_abap_runtime` (release state unconfirmed) | diff two `GET TIME STAMP` values / `ZIF_AU_CLOCK` |
 | text    | `READ_TEXT`/`SAVE_TEXT` + `sy-langu` default | model long text as a released entity (object-specific) |
+| fiori (`ZCL_AU_FIORI_FROM_ALV`) | LVC field-catalog type | on cloud seed fields with `ZCL_AU_FIORI_GEN=>fields_from_structure` |
 
 ## On-premise / SAP GUI only (❌)
 
