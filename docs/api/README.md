@@ -16,9 +16,12 @@ Generated from the ABAP sources by `tools/gen-api-docs.js` — the offline/CI co
 | [ZCL_AU_DATASET](zcl_au_dataset.md) | `dataset` | AU - Application server file I/O |
 | [ZCL_AU_DATE](zcl_au_date.md) | `date` | AU - Date and time utilities |
 | [ZCL_AU_DOCGEN](zcl_au_docgen.md) | `docgen` | AU - Markdown API doc generator |
+| [ZCL_AU_DYN_SQL](zcl_au_dyn_sql.md) | `dynsql` | AU - Safe dynamic SQL helpers |
 | [ZCL_AU_EMAIL](zcl_au_email.md) | `email` | AU - Email sender (BCS) |
 | [ZCX_AU_ERROR](zcx_au_error.md) | `error` | AU - Generic utility exception |
 | [ZCL_AU_ANALYTICS_GEN](zcl_au_analytics_gen.md) | `export` | AU - Data export (OData/analytics) generator |
+| [ZCL_AU_FEATURE_FLAG](zcl_au_feature_flag.md) | `featureflag` | AU - Feature flag service |
+| [ZIF_AU_FEATURE_FLAG](zif_au_feature_flag.md) | `featureflag` | AU - Feature flag abstraction |
 | [ZCL_AU_FIORI_FROM_ALV](zcl_au_fiori_from_alv.md) | `fiori` | AU - ALV field catalog to Fiori fields |
 | [ZCL_AU_FIORI_GEN](zcl_au_fiori_gen.md) | `fiori` | AU - Fiori (CDS/RAP) scaffolding generator |
 | [ZCL_AU_GUARD](zcl_au_guard.md) | `guard` | AU - Guard clauses (argument checks) |

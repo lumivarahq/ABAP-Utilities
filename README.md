@@ -69,6 +69,8 @@ layers — the per-module READMEs tell you when to graduate to the full library.
 | [Zip](src/zip/README.md)         | `ZAU_ZIP` `/src/zip`         | `ZCL_AU_ZIP` | `ZCX_AU_ERROR` | ⚠️ |
 | [Stopwatch](src/timer/README.md) | `ZAU_TIMER` `/src/timer`     | `ZCL_AU_TIMER` | – | ⚠️ |
 | [Config/toggles](src/config/README.md) | `ZAU_CONFIG` `/src/config` | `ZCL_AU_CONFIG` | TVARVC | ⚠️ |
+| [Feature flags](src/featureflag/README.md) | `ZAU_FEATUREFLAG` `/src/featureflag` | `ZIF_AU_FEATURE_FLAG`, `ZCL_AU_FEATURE_FLAG` | – | ✅ |
+| [Safe dynamic SQL](src/dynsql/README.md) | `ZAU_DYNSQL` `/src/dynsql` | `ZCL_AU_DYN_SQL` | `ZCX_AU_ERROR` | ✅ |
 | [App-server files](src/dataset/README.md) | `ZAU_DATASET` `/src/dataset` | `ZCL_AU_DATASET` | `ZCX_AU_ERROR`, OPEN DATASET | ❌ |
 | [Locking](src/lock/README.md)    | `ZAU_LOCK` `/src/lock`       | `ZCL_AU_LOCK` | `ZCX_AU_ERROR`, ENQUEUE | ⚠️ |
 | [Background jobs](src/job/README.md) | `ZAU_JOB` `/src/job`     | `ZCL_AU_JOB` | `ZCX_AU_ERROR`, JOB FMs | ⚠️ |
@@ -162,6 +164,8 @@ before/after ABAP:
 
 | Guide | What it covers |
 |-------|----------------|
+| [Anti-patterns → remediation playbook](docs/anti-patterns-playbook.md) | **start here** — every common ABAP bad habit mapped to a tool here, an external project, or a how-to |
+| [Dev workflow](docs/dev-workflow.md) | git hooks, Conventional Commits, CI gates, branch/PR flow, ADR/postmortem/review templates |
 | [Clean Core & ATC Cookbook](docs/clean-core-atc-cookbook.md) | top ATC findings (SAP-table writes, unreleased APIs, native SQL, sy-fields, Dynpro) with fixes |
 | [RAP / CDS / BTP Modernization](docs/rap-cds-modernization.md) | the target stack, migrating reports to CDS+RAP+Fiori, VDM, managed/unmanaged RAP, BTP specifics |
 | [Fiori Conversion Cookbook](docs/fiori-conversion-cookbook.md) | turn table maintenance (SM30), ALV reports and selection-screen reports into Fiori tiles (with `ZCL_AU_FIORI_GEN`) |

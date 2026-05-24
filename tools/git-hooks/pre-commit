@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#
+# Pre-commit hook: lint the ABAP and keep the generated API docs in sync.
+# Enable once per clone with:   git config core.hooksPath tools/git-hooks
+#
+set -euo pipefail
+
+echo "[pre-commit] abaplint…"
+npx --no-install abaplint || npx --yes @abaplint/cli@latest
+
+echo "[pre-commit] regenerating docs/api…"
+node tools/gen-api-docs.js >/dev/null
+if ! git diff --quiet -- docs/api; then
+  echo "[pre-commit] docs/api was out of date — regenerated and staged."
+  git add docs/api
+fi
+
+echo "[pre-commit] ok"
