@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#
+# commit-msg hook: enforce Conventional Commits so the history is machine-
+# readable (changelogs, semantic versioning). Enable with:
+#   git config core.hooksPath tools/git-hooks
+#
+set -euo pipefail
+
+subject="$(head -n 1 "$1")"
+
+# allow merge / revert commits through unchanged
+case "$subject" in
+  Merge\ *|Revert\ *) exit 0 ;;
+esac
+
+pattern='^(feat|fix|docs|refactor|test|chore|perf|build|ci|style)(\([a-z0-9_-]+\))?!?: .+'
+if ! printf '%s' "$subject" | grep -qE "$pattern"; then
+  echo "[commit-msg] Commit message must follow Conventional Commits:"
+  echo "             type(scope): subject"
+  echo "  types: feat fix docs refactor test chore perf build ci style"
+  echo "  e.g.   feat(date): add workdays_between helper"
+  exit 1
+fi

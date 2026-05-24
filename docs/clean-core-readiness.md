@@ -31,6 +31,8 @@ the ⚠️/❌ ones, and the **released replacement** to use in the cloud.
 | rap     | `ZCL_AU_RAP_MSG` | `cl_abap_behv`, `if_abap_behv_message` |
 | clock   | `ZIF_AU_CLOCK`/`ZCL_AU_CLOCK` | `GET/CONVERT TIME STAMP` |
 | guard   | `ZCL_AU_GUARD` | language only |
+| featureflag | `ZIF_AU_FEATURE_FLAG`/`ZCL_AU_FEATURE_FLAG` | language only (hashed table) |
+| dynsql  | `ZCL_AU_DYN_SQL` | `cl_abap_dyn_prg` (released sanitizer) |
 | docgen  | `ZCL_AU_DOCGEN` | RTTI (`cl_abap_typedescr`) — **the class only** |
 | fiori   | `ZCL_AU_FIORI_GEN` | RTTI + string building (emits CDS/RAP/SRVD source) |
 | wrapper | `ZCL_AU_WRAP_GEN` | string building (emits a released facade class) |
