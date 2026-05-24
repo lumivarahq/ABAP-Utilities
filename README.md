@@ -53,9 +53,13 @@ layers — the per-module READMEs tell you when to graduate to the full library.
 | [JSON](src/json/README.md)       | `ZAU_JSON` `/src/json`       | `ZCL_AU_JSON` | `/UI2/CL_JSON` | ⚠️ |
 | [Logger](src/logger/README.md)   | `ZAU_LOGGER` `/src/logger`   | `ZIF_AU_LOG`, `ZCL_AU_LOGGER` | `ZCX_AU_ERROR`, BAL | ⚠️ |
 | [RAP](src/rap/README.md)         | `ZAU_RAP` `/src/rap`         | `ZCL_AU_RAP_MSG` | RAP runtime | ✅ |
+| [ALV (SALV)](src/alv/README.md)  | `ZAU_ALV` `/src/alv`         | `ZCL_AU_ALV` | – | ❌ |
+| [Email](src/email/README.md)     | `ZAU_EMAIL` `/src/email`     | `ZCL_AU_EMAIL` | `ZCX_AU_ERROR`, BCS | ⚠️ |
+| [HTTP/REST](src/http/README.md)  | `ZAU_HTTP` `/src/http`       | `ZCL_AU_HTTP` | `ZCX_AU_ERROR` | ✅ |
+| [Number range](src/numrange/README.md) | `ZAU_NUMRANGE` `/src/numrange` | `ZCL_AU_NUMRANGE` | `ZCX_AU_ERROR` | ⚠️ |
 | [Test data](src/test/README.md)  | `ZAU_TEST` `/src/test`       | `ZCL_AU_TEST_DATA` | – | ✅ |
 
-\* ✅ = uses only released APIs. ⚠️ = depends on a class/framework that may need
+\* ✅ = uses only released APIs. ❌ = SAP GUI / classic Dynpro only. ⚠️ = depends on a class/framework that may need
 checking in ABAP Cloud (see the module README for the cloud-safe alternative).
 
 ---
