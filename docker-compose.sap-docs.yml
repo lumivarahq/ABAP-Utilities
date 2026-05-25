@@ -1,0 +1,46 @@
+# Runs marianfoo/mcp-sap-docs in the ABAP variant as a local MCP server, so
+# Claude Code / Cursor / Copilot get the official ABAP docs + SAP Community
+# search inline while working on this repo. See docs/MCP-INTEGRATION.md.
+#
+#   docker compose -f docker-compose.sap-docs.yml up -d
+#
+# The matching client config is in .mcp.json (http://localhost:3122/mcp).
+
+services:
+  sap-docs:
+    # Build the `abap` variant straight from upstream. Pin a tag/commit after
+    # `#` for reproducibility, e.g. ...mcp-sap-docs.git#v1.2.3
+    build:
+      context: "https://github.com/marianfoo/mcp-sap-docs.git#main"
+      args:
+        MCP_VARIANT: abap
+    image: mcp-sap-docs:abap
+    container_name: mcp-sap-docs-abap
+    environment:
+      # Select the ABAP variant on the server process (NOT in .mcp.json — env
+      # there only applies to stdio servers, and this is an http server).
+      MCP_VARIANT: abap
+      MCP_HOST: 0.0.0.0
+      # The abap variant's default streamable-HTTP port is 3124.
+      MCP_PORT: "3124"
+    ports:
+      # host 3122 -> container 3124. Host 3122 keeps the URL in .mcp.json stable;
+      # 3124 is the abap variant's documented internal port.
+      - "3122:3124"
+    restart: unless-stopped
+    healthcheck:
+      # node is always present (it's a Node app); avoids depending on curl/wget.
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3124/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+# Air-gapped / offline operation:
+#   The local index works with no internet. To enforce it, attach this service
+#   to an `internal` network (below) and pass includeOnline=false on searches,
+#   which skips the live SAP Help / SAP Community calls.
+#
+# networks:
+#   default:
+#     internal: true
