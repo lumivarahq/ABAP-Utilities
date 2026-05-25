@@ -1,0 +1,1165 @@
+{
+  "generator": "tools/gen-mcp-index.js",
+  "repository": "abap-utilities",
+  "version": "0.1.0",
+  "count": 47,
+  "objects": [
+    {
+      "object": "ZCL_AU_ALV_EVENTS",
+      "kind": "class",
+      "module": "alv",
+      "subpackage": "ZAU_ALV",
+      "description": "AU - ALV event adapter (SALV)",
+      "source": "src/alv/zcl_au_alv_events.clas.abap",
+      "methods": []
+    },
+    {
+      "object": "ZCL_AU_ALV",
+      "kind": "class",
+      "module": "alv",
+      "subpackage": "ZAU_ALV",
+      "description": "AU - ALV (SALV) display helper",
+      "source": "src/alv/zcl_au_alv.clas.abap",
+      "methods": [
+        {
+          "name": "DISPLAY",
+          "summary": "One-call full-screen ALV grid - a drop-in replacement for the classic"
+        },
+        {
+          "name": "FACTORY",
+          "summary": "Build a pre-configured SALV instance (functions on, optimized, striped,"
+        },
+        {
+          "name": "APPLY_LVC_FIELDCAT",
+          "summary": "Reuse an existing classic field catalog (LVC) on a SALV instance."
+        },
+        {
+          "name": "SET_COLUMN_TITLE",
+          "summary": "Set all three column titles (short/medium/long) from one text."
+        },
+        {
+          "name": "HIDE_COLUMN",
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "object": "ZIF_AU_ALV_HANDLER",
+      "kind": "interface",
+      "module": "alv",
+      "subpackage": "ZAU_ALV",
+      "description": "AU - ALV interaction handler",
+      "source": "src/alv/zif_au_alv_handler.intf.abap",
+      "methods": [
+        {
+          "name": "ON_DOUBLE_CLICK",
+          "summary": ""
+        },
+        {
+          "name": "ON_LINK_CLICK",
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_BASE64",
+      "kind": "class",
+      "module": "base64",
+      "subpackage": "ZAU_BASE64",
+      "description": "AU - Base64 encode/decode",
+      "source": "src/base64/zcl_au_base64.clas.abap",
+      "methods": [
+        {
+          "name": "ENCODE",
+          "summary": "Base64-encode raw bytes."
+        },
+        {
+          "name": "DECODE",
+          "summary": "Base64-decode into raw bytes."
+        },
+        {
+          "name": "ENCODE_STRING",
+          "summary": "Base64-encode a string (UTF-8)."
+        },
+        {
+          "name": "DECODE_TO_STRING",
+          "summary": "Base64-decode into a string (UTF-8)."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_BATCH",
+      "kind": "class",
+      "module": "batch",
+      "subpackage": "ZAU_BATCH",
+      "description": "AU - Batch / package processing helpers",
+      "source": "src/batch/zcl_au_batch.clas.abap",
+      "methods": [
+        {
+          "name": "BOUNDS",
+          "summary": "Compute the 1-based [from, to] ranges needed to process iv_total items in"
+        },
+        {
+          "name": "CHUNKS",
+          "summary": "Split a string table into chunks of at most iv_size rows."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_CLOCK",
+      "kind": "class",
+      "module": "clock",
+      "subpackage": "ZAU_CLOCK",
+      "description": "AU - Clock (system and fixed)",
+      "source": "src/clock/zcl_au_clock.clas.abap",
+      "methods": [
+        {
+          "name": "SYSTEM",
+          "summary": "The real, system clock - returns the actual current time."
+        },
+        {
+          "name": "FIXED",
+          "summary": "A frozen clock for tests - always returns the given moment, so behaviour"
+        }
+      ]
+    },
+    {
+      "object": "ZIF_AU_CLOCK",
+      "kind": "interface",
+      "module": "clock",
+      "subpackage": "ZAU_CLOCK",
+      "description": "AU - Clock abstraction",
+      "source": "src/clock/zif_au_clock.intf.abap",
+      "methods": [
+        {
+          "name": "NOW_TIMESTAMP",
+          "summary": "Current moment as a high-resolution UTC time stamp."
+        },
+        {
+          "name": "NOW_DATE",
+          "summary": "Current UTC date."
+        },
+        {
+          "name": "NOW_TIME",
+          "summary": "Current UTC time."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_CONFIG",
+      "kind": "class",
+      "module": "config",
+      "subpackage": "ZAU_CONFIG",
+      "description": "AU - Config / feature toggles (TVARVC)",
+      "source": "src/config/zcl_au_config.clas.abap",
+      "methods": [
+        {
+          "name": "GET_VALUE",
+          "summary": "Single parameter value from TVARVC (maintained in transaction STVARV,"
+        },
+        {
+          "name": "GET_RANGE",
+          "summary": "Select-option style ranges from TVARVC (type \"Selection option\"),"
+        },
+        {
+          "name": "IS_ENABLED",
+          "summary": "Feature toggle: true if the parameter value is X / TRUE / 1 / YES / ON."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_CONTEXT",
+      "kind": "class",
+      "module": "context",
+      "subpackage": "ZAU_CONTEXT",
+      "description": "AU - System context (clean-core sy-fields)",
+      "source": "src/context/zcl_au_context.clas.abap",
+      "methods": [
+        {
+          "name": "USER",
+          "summary": "Technical name of the current user (replaces sy-uname)."
+        },
+        {
+          "name": "TODAY",
+          "summary": "Current system date (replaces sy-datum)."
+        },
+        {
+          "name": "TIME_NOW",
+          "summary": "Current system time (replaces sy-uzeit)."
+        },
+        {
+          "name": "TIME_ZONE",
+          "summary": "Time zone of the current user."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_CSV",
+      "kind": "class",
+      "module": "csv",
+      "subpackage": "ZAU_CSV",
+      "description": "AU - CSV reader and writer (RTTI based)",
+      "source": "src/csv/zcl_au_csv.clas.abap",
+      "methods": [
+        {
+          "name": "FROM_TABLE",
+          "summary": "Serialize any internal table into CSV text (RFC-4180 style quoting)."
+        },
+        {
+          "name": "TO_TABLE",
+          "summary": "Parse CSV text into an internal table."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_DATASET",
+      "kind": "class",
+      "module": "dataset",
+      "subpackage": "ZAU_DATASET",
+      "description": "AU - Application server file I/O",
+      "source": "src/dataset/zcl_au_dataset.clas.abap",
+      "methods": [
+        {
+          "name": "READ_TEXT",
+          "summary": "Read a UTF-8 text file from the application server as one string."
+        },
+        {
+          "name": "WRITE_TEXT",
+          "summary": "Write a string to a UTF-8 text file on the application server (overwrites)."
+        },
+        {
+          "name": "READ_BINARY",
+          "summary": "Read a binary file from the application server."
+        },
+        {
+          "name": "WRITE_BINARY",
+          "summary": "Write raw bytes to a binary file on the application server (overwrites)."
+        },
+        {
+          "name": "DELETE",
+          "summary": ""
+        },
+        {
+          "name": "EXISTS",
+          "summary": "True if the path can be opened for input."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_DATE",
+      "kind": "class",
+      "module": "date",
+      "subpackage": "ZAU_DATE",
+      "description": "AU - Date and time utilities",
+      "source": "src/date/zcl_au_date.clas.abap",
+      "methods": [
+        {
+          "name": "DAYS_BETWEEN",
+          "summary": "Number of days between two dates (to - from)."
+        },
+        {
+          "name": "ADD_DAYS",
+          "summary": ""
+        },
+        {
+          "name": "ADD_MONTHS",
+          "summary": "Add (or subtract, with a negative value) calendar months."
+        },
+        {
+          "name": "FIRST_DAY_OF_MONTH",
+          "summary": ""
+        },
+        {
+          "name": "LAST_DAY_OF_MONTH",
+          "summary": ""
+        },
+        {
+          "name": "WEEKDAY",
+          "summary": "Day of week, ISO-8601 numbering: Monday = 1 ... Sunday = 7."
+        },
+        {
+          "name": "IS_WEEKEND",
+          "summary": ""
+        },
+        {
+          "name": "WORKDAYS_BETWEEN",
+          "summary": "Count of working days (Mon-Fri) in the closed interval [from, to]."
+        },
+        {
+          "name": "TO_ISO",
+          "summary": "Format a date as ISO-8601 \"YYYY-MM-DD\"."
+        },
+        {
+          "name": "FROM_ISO",
+          "summary": "Parse an ISO-8601 \"YYYY-MM-DD\" string into a date."
+        },
+        {
+          "name": "AGE",
+          "summary": "Age in completed years on a given key date. The key date is explicit (no"
+        },
+        {
+          "name": "NOW",
+          "summary": "Current high-resolution UTC time stamp."
+        },
+        {
+          "name": "TIMESTAMP_TO_DATE_TIME",
+          "summary": "Split a time stamp into date and time in the requested time zone."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_DIFF",
+      "kind": "class",
+      "module": "diff",
+      "subpackage": "ZAU_DIFF",
+      "description": "AU - Text/table diff (LCS)",
+      "source": "src/diff/zcl_au_diff.clas.abap",
+      "methods": [
+        {
+          "name": "TABLES",
+          "summary": "Line diff of two string tables, using a Longest-Common-Subsequence so that"
+        },
+        {
+          "name": "TEXTS",
+          "summary": "Line diff of two strings (split at newline)."
+        },
+        {
+          "name": "TO_TEXT",
+          "summary": "Render a diff as text: each line prefixed with its kind (' '/'-'/'+')."
+        },
+        {
+          "name": "ARE_EQUAL",
+          "summary": "True if the two tables are identical line-for-line."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_DOCGEN",
+      "kind": "class",
+      "module": "docgen",
+      "subpackage": "ZAU_DOCGEN",
+      "description": "AU - Markdown API doc generator",
+      "source": "src/docgen/zcl_au_docgen.clas.abap",
+      "methods": [
+        {
+          "name": "FOR_CLASS",
+          "summary": "Generate a Markdown API reference for a global class/interface from its"
+        },
+        {
+          "name": "FOR_CLASSES",
+          "summary": "Same as for_class, concatenated for several classes/interfaces."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_DYN_SQL",
+      "kind": "class",
+      "module": "dynsql",
+      "subpackage": "ZAU_DYNSQL",
+      "description": "AU - Safe dynamic SQL helpers",
+      "source": "src/dynsql/zcl_au_dyn_sql.clas.abap",
+      "methods": [
+        {
+          "name": "QUOTE",
+          "summary": "Quote a literal value for a dynamic WHERE (encloses in single quotes and"
+        },
+        {
+          "name": "COLUMN",
+          "summary": "Validate a dynamic column name (rejects anything that is not a valid"
+        },
+        {
+          "name": "ALLOWED",
+          "summary": "Enforce an allow-list for any dynamic token (column, sort order, table)."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_EMAIL",
+      "kind": "class",
+      "module": "email",
+      "subpackage": "ZAU_EMAIL",
+      "description": "AU - Email sender (BCS)",
+      "source": "src/email/zcl_au_email.clas.abap",
+      "methods": [
+        {
+          "name": "CREATE",
+          "summary": "Fluent e-mail builder over BCS (CL_BCS). Example:"
+        },
+        {
+          "name": "SUBJECT",
+          "summary": ""
+        },
+        {
+          "name": "FROM",
+          "summary": "Optional explicit sender (defaults to the current user if omitted)."
+        },
+        {
+          "name": "TO",
+          "summary": ""
+        },
+        {
+          "name": "CC",
+          "summary": ""
+        },
+        {
+          "name": "BODY_TEXT",
+          "summary": ""
+        },
+        {
+          "name": "BODY_HTML",
+          "summary": ""
+        },
+        {
+          "name": "ATTACH_TEXT",
+          "summary": "Add a text attachment (e.g. CSV, TXT, XML)."
+        },
+        {
+          "name": "ATTACH_BINARY",
+          "summary": "Add a binary attachment (e.g. PDF, XLSX)."
+        },
+        {
+          "name": "SEND",
+          "summary": "Build and send the mail. Returns abap_true if accepted for all recipients."
+        }
+      ]
+    },
+    {
+      "object": "ZCX_AU_ERROR",
+      "kind": "class",
+      "module": "error",
+      "subpackage": "ZAU_ERROR",
+      "description": "AU - Generic utility exception",
+      "source": "src/error/zcx_au_error.clas.abap",
+      "methods": [
+        {
+          "name": "RAISE",
+          "summary": "Raise an exception carrying an arbitrary free text."
+        },
+        {
+          "name": "RAISE_T100",
+          "summary": "Raise an exception from a message-class message (T100)."
+        },
+        {
+          "name": "RAISE_FROM_SY",
+          "summary": "Raise an exception from the current sy-msg* fields"
+        },
+        {
+          "name": "GET_FULL_TEXT",
+          "summary": "Returns the full (untruncated) text when the exception was raised"
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_ANALYTICS_GEN",
+      "kind": "class",
+      "module": "export",
+      "subpackage": "ZAU_EXPORT",
+      "description": "AU - Data export (OData/analytics) generator",
+      "source": "src/export/zcl_au_analytics_gen.clas.abap",
+      "methods": [
+        {
+          "name": "ODATA_EXPORT",
+          "summary": "Generate a consumption CDS view + service definition to expose a table/view"
+        },
+        {
+          "name": "ANALYTICS_CUBE",
+          "summary": "Generate an analytical CUBE CDS view (dimensions + aggregated measures) for"
+        },
+        {
+          "name": "EXTRACTION_VIEW",
+          "summary": "Generate a data-extraction-enabled CDS view (for replication/CDC into SAP"
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_FEATURE_FLAG",
+      "kind": "class",
+      "module": "featureflag",
+      "subpackage": "ZAU_FEATUREFLAG",
+      "description": "AU - Feature flag service",
+      "source": "src/featureflag/zcl_au_feature_flag.clas.abap",
+      "methods": [
+        {
+          "name": "FROM_ENABLED",
+          "summary": "Build an in-memory flag set from a list of enabled feature names. Seed it"
+        }
+      ]
+    },
+    {
+      "object": "ZIF_AU_FEATURE_FLAG",
+      "kind": "interface",
+      "module": "featureflag",
+      "subpackage": "ZAU_FEATUREFLAG",
+      "description": "AU - Feature flag abstraction",
+      "source": "src/featureflag/zif_au_feature_flag.intf.abap",
+      "methods": [
+        {
+          "name": "IS_ENABLED",
+          "summary": "Feature-toggle abstraction so that \"deploy\" and \"release\" are decoupled:"
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_FIORI_FROM_ALV",
+      "kind": "class",
+      "module": "fiori",
+      "subpackage": "ZAU_FIORI",
+      "description": "AU - ALV field catalog to Fiori fields",
+      "source": "src/fiori/zcl_au_fiori_from_alv.clas.abap",
+      "methods": [
+        {
+          "name": "FIELDS",
+          "summary": "Bridge for an ALV -> Fiori migration: turn a classic ALV field catalog"
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_FIORI_GEN",
+      "kind": "class",
+      "module": "fiori",
+      "subpackage": "ZAU_FIORI",
+      "description": "AU - Fiori (CDS/RAP) scaffolding generator",
+      "source": "src/fiori/zcl_au_fiori_gen.clas.abap",
+      "methods": [
+        {
+          "name": "FIELDS_FROM_STRUCTURE",
+          "summary": "Derive a default field list from a DDIC table or structure via RTTI."
+        },
+        {
+          "name": "GENERATE",
+          "summary": "Generate the CDS + RAP + service artifacts for a maintenance / list-report"
+        },
+        {
+          "name": "VALUE_HELP",
+          "summary": "Generate a value-help (search-help replacement) CDS view, plus the"
+        },
+        {
+          "name": "METADATA_EXTENSION",
+          "summary": "Generate a metadata extension (DDLX) that holds the @UI annotations"
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_GUARD",
+      "kind": "class",
+      "module": "guard",
+      "subpackage": "ZAU_GUARD",
+      "description": "AU - Guard clauses (argument checks)",
+      "source": "src/guard/zcl_au_guard.clas.abap",
+      "methods": [
+        {
+          "name": "THAT",
+          "summary": "Raise unless the (boolean) condition holds."
+        },
+        {
+          "name": "NOT_INITIAL",
+          "summary": "Raise if the value is initial (empty string, 0, blank, initial structure)."
+        },
+        {
+          "name": "NOT_EMPTY",
+          "summary": "Raise if the internal table is empty."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_GUID",
+      "kind": "class",
+      "module": "guid",
+      "subpackage": "ZAU_GUID",
+      "description": "AU - UUID/GUID generation",
+      "source": "src/guid/zcl_au_guid.clas.abap",
+      "methods": [
+        {
+          "name": "C32",
+          "summary": "New UUID as a 32-character upper-case hex string."
+        },
+        {
+          "name": "C22",
+          "summary": "New UUID as a 22-character (base64-like) string."
+        },
+        {
+          "name": "X16",
+          "summary": "New UUID as raw 16 bytes (RAW16) - the form used for key fields."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_HASH",
+      "kind": "class",
+      "module": "hash",
+      "subpackage": "ZAU_HASH",
+      "description": "AU - Hashing (MD5/SHA)",
+      "source": "src/hash/zcl_au_hash.clas.abap",
+      "methods": [
+        {
+          "name": "MD5",
+          "summary": "MD5 hex digest of a string (UTF-8 bytes). Use only for checksums/keys,"
+        },
+        {
+          "name": "SHA1",
+          "summary": "SHA-1 hex digest of a string (UTF-8 bytes)."
+        },
+        {
+          "name": "SHA256",
+          "summary": "SHA-256 hex digest of a string (UTF-8 bytes)."
+        },
+        {
+          "name": "HASH_BINARY",
+          "summary": "Hex digest of raw bytes with any algorithm supported by"
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_HTTP",
+      "kind": "class",
+      "module": "http",
+      "subpackage": "ZAU_HTTP",
+      "description": "AU - HTTP/REST client helper",
+      "source": "src/http/zcl_au_http.clas.abap",
+      "methods": [
+        {
+          "name": "GET",
+          "summary": "HTTP GET. Returns status code, reason and response body."
+        },
+        {
+          "name": "POST",
+          "summary": "HTTP POST with a string body (set the Content-Type via it_headers)."
+        },
+        {
+          "name": "REQUEST",
+          "summary": "Generic request: iv_method = GET | POST | PUT | DELETE | PATCH."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_ITAB",
+      "kind": "class",
+      "module": "itab",
+      "subpackage": "ZAU_ITAB",
+      "description": "AU - Internal table helpers",
+      "source": "src/itab/zcl_au_itab.clas.abap",
+      "methods": [
+        {
+          "name": "DISTINCT",
+          "summary": "Remove duplicate rows in place: sorts the table, then deletes adjacent"
+        },
+        {
+          "name": "COUNT_DISTINCT",
+          "summary": "Number of distinct rows, without modifying the input table."
+        },
+        {
+          "name": "HAS_ROWS",
+          "summary": "True if the table has at least one row (reads better than IS NOT INITIAL"
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_JOB",
+      "kind": "class",
+      "module": "job",
+      "subpackage": "ZAU_JOB",
+      "description": "AU - Background job scheduling",
+      "source": "src/job/zcl_au_job.clas.abap",
+      "methods": [
+        {
+          "name": "RUN_REPORT",
+          "summary": "Schedule a report to run in a background job in one call"
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_JSON",
+      "kind": "class",
+      "module": "json",
+      "subpackage": "ZAU_JSON",
+      "description": "AU - JSON serialize/deserialize wrapper",
+      "source": "src/json/zcl_au_json.clas.abap",
+      "methods": [
+        {
+          "name": "SERIALIZE",
+          "summary": "Serialize any ABAP data into a JSON string."
+        },
+        {
+          "name": "DESERIALIZE",
+          "summary": "Deserialize a JSON string into an ABAP data object."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_LOCK",
+      "kind": "class",
+      "module": "lock",
+      "subpackage": "ZAU_LOCK",
+      "description": "AU - Generic lock (ENQUEUE/DEQUEUE)",
+      "source": "src/lock/zcl_au_lock.clas.abap",
+      "methods": [
+        {
+          "name": "LOCK",
+          "summary": "Set a generic SAP lock (ENQUEUE) on a name + key. Retries while the entry"
+        },
+        {
+          "name": "UNLOCK",
+          "summary": "Release a generic SAP lock (DEQUEUE). Safe to call even if not locked."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_LOGGER",
+      "kind": "class",
+      "module": "logger",
+      "subpackage": "ZAU_LOGGER",
+      "description": "AU - Application log (BAL) logger",
+      "source": "src/logger/zcl_au_logger.clas.abap",
+      "methods": [
+        {
+          "name": "CREATE",
+          "summary": "Create a logger bound to an Application Log object/subobject."
+        }
+      ]
+    },
+    {
+      "object": "ZIF_AU_LOG",
+      "kind": "interface",
+      "module": "logger",
+      "subpackage": "ZAU_LOGGER",
+      "description": "AU - Application log interface",
+      "source": "src/logger/zif_au_log.intf.abap",
+      "methods": [
+        {
+          "name": "INFO",
+          "summary": ""
+        },
+        {
+          "name": "SUCCESS",
+          "summary": ""
+        },
+        {
+          "name": "WARNING",
+          "summary": ""
+        },
+        {
+          "name": "ERROR",
+          "summary": ""
+        },
+        {
+          "name": "ADD_EXCEPTION",
+          "summary": "Add an exception together with its full \"previous\" chain."
+        },
+        {
+          "name": "ADD_BAPIRET",
+          "summary": "Add all rows of a BAPIRET2 return table."
+        },
+        {
+          "name": "ADD_FROM_SY",
+          "summary": "Add the message currently held in the sy-msg* fields."
+        },
+        {
+          "name": "SAVE",
+          "summary": "Persist the log to the database (BAL)."
+        },
+        {
+          "name": "HANDLE",
+          "summary": "The underlying BAL log handle (for advanced/native use)."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_MESSAGE",
+      "kind": "class",
+      "module": "message",
+      "subpackage": "ZAU_MESSAGE",
+      "description": "AU - Message handling utilities",
+      "source": "src/message/zcl_au_message.clas.abap",
+      "methods": [
+        {
+          "name": "TEXT_FROM_T100",
+          "summary": "Resolve a message-class (T100) message into its formatted text."
+        },
+        {
+          "name": "TEXT_FROM_SY",
+          "summary": "Formatted text of the message currently in the sy-msg* fields."
+        },
+        {
+          "name": "BAPIRET",
+          "summary": "Build a single BAPIRET2 line (incl. the resolved message text)."
+        },
+        {
+          "name": "BAPIRET_FROM_SY",
+          "summary": "Build a BAPIRET2 line from the current sy-msg* fields."
+        },
+        {
+          "name": "HAS_ERRORS",
+          "summary": "True if the table contains an error (E), abort (A) or dump (X) row."
+        },
+        {
+          "name": "CONCAT",
+          "summary": "Concatenate all message texts of a BAPIRET2 table."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_NUMBER",
+      "kind": "class",
+      "module": "number",
+      "subpackage": "ZAU_NUMBER",
+      "description": "AU - Number and amount utilities",
+      "source": "src/number/zcl_au_number.clas.abap",
+      "methods": [
+        {
+          "name": "ROUND",
+          "summary": "Commercial rounding to a number of decimal places."
+        },
+        {
+          "name": "CLAMP",
+          "summary": "Constrain a value to the closed interval [min, max]."
+        },
+        {
+          "name": "IN_RANGE",
+          "summary": ""
+        },
+        {
+          "name": "PERCENTAGE",
+          "summary": "part / whole * 100, rounded to iv_decimals. Returns 0 for whole = 0."
+        },
+        {
+          "name": "FORMAT_GROUPED",
+          "summary": "Format a number with explicit grouping and decimal separators,"
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_NUMRANGE",
+      "kind": "class",
+      "module": "numrange",
+      "subpackage": "ZAU_NUMRANGE",
+      "description": "AU - Number range helper",
+      "source": "src/numrange/zcl_au_numrange.clas.abap",
+      "methods": [
+        {
+          "name": "NEXT",
+          "summary": "Draw the next number from a number range object (transaction SNRO / SNUM)."
+        },
+        {
+          "name": "NEXT_BLOCK",
+          "summary": "Draw a block of iv_quantity numbers at once; returns the first number"
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_PROFILER",
+      "kind": "class",
+      "module": "profiler",
+      "subpackage": "ZAU_PROFILER",
+      "description": "AU - Lightweight runtime profiler",
+      "source": "src/profiler/zcl_au_profiler.clas.abap",
+      "methods": [
+        {
+          "name": "START",
+          "summary": "Start timing a named step (wrap a code block or a SELECT)."
+        },
+        {
+          "name": "STOP",
+          "summary": "Stop the most recent matching start and accumulate the elapsed time."
+        },
+        {
+          "name": "RECORD",
+          "summary": "Record a measurement directly (microseconds). Use it to fold in a duration"
+        },
+        {
+          "name": "REPORT",
+          "summary": "Aggregated results, sorted slowest-first (total time descending) - the"
+        },
+        {
+          "name": "REPORT_TEXT",
+          "summary": "Human-readable, slowest-first report (for a log, the console, or an ALV"
+        },
+        {
+          "name": "RESET",
+          "summary": "Clear all measurements (e.g. between runs)."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_RAP_MSG",
+      "kind": "class",
+      "module": "rap",
+      "subpackage": "ZAU_RAP",
+      "description": "AU - RAP message factory",
+      "source": "src/rap/zcl_au_rap_msg.clas.abap",
+      "methods": [
+        {
+          "name": "ERROR",
+          "summary": "Message-class (T100) message with ERROR severity."
+        },
+        {
+          "name": "WARNING",
+          "summary": "Message-class (T100) message with WARNING severity."
+        },
+        {
+          "name": "INFO",
+          "summary": "Message-class (T100) message with INFORMATION severity."
+        },
+        {
+          "name": "SUCCESS",
+          "summary": "Message-class (T100) message with SUCCESS severity."
+        },
+        {
+          "name": "TEXT_ERROR",
+          "summary": "Free-text ERROR message (no message class required)."
+        },
+        {
+          "name": "FROM_EXCEPTION",
+          "summary": "Build an ERROR message from any exception text."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_RETRY",
+      "kind": "class",
+      "module": "retry",
+      "subpackage": "ZAU_RETRY",
+      "description": "AU - Retry policy (resilience)",
+      "source": "src/retry/zcl_au_retry.clas.abap",
+      "methods": [
+        {
+          "name": "RUN",
+          "summary": "Run io_action, retrying when it raises, until it succeeds or the attempts"
+        }
+      ]
+    },
+    {
+      "object": "ZIF_AU_RUNNABLE",
+      "kind": "interface",
+      "module": "retry",
+      "subpackage": "ZAU_RETRY",
+      "description": "AU - Runnable unit of work",
+      "source": "src/retry/zif_au_runnable.intf.abap",
+      "methods": [
+        {
+          "name": "RUN",
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_SEMVER",
+      "kind": "class",
+      "module": "semver",
+      "subpackage": "ZAU_SEMVER",
+      "description": "AU - Semantic version parse/compare",
+      "source": "src/semver/zcl_au_semver.clas.abap",
+      "methods": [
+        {
+          "name": "PARSE",
+          "summary": "Parse \"MAJOR[.MINOR[.PATCH]]\". A pre-release/build suffix (after '-' or '+')"
+        },
+        {
+          "name": "COMPARE",
+          "summary": "Compare two versions: -1 if a < b, 0 if equal, 1 if a > b."
+        },
+        {
+          "name": "AT_LEAST",
+          "summary": "True if iv_version >= iv_minimum (a simple dependency satisfaction check)."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_STRING",
+      "kind": "class",
+      "module": "string",
+      "subpackage": "ZAU_STRING",
+      "description": "AU - String utilities",
+      "source": "src/string/zcl_au_string.clas.abap",
+      "methods": [
+        {
+          "name": "SPLIT_TO_TABLE",
+          "summary": "Split a string into a table of lines at a separator."
+        },
+        {
+          "name": "JOIN",
+          "summary": "Join a table of strings into a single string with a separator."
+        },
+        {
+          "name": "MASK",
+          "summary": "Mask a string, leaving only the last iv_visible characters readable."
+        },
+        {
+          "name": "REPLACE_ALL",
+          "summary": "Replace every occurrence of iv_what with iv_with."
+        },
+        {
+          "name": "IS_NUMERIC",
+          "summary": "True if the string contains digits only (no sign, no decimals)."
+        },
+        {
+          "name": "TO_SNAKE_CASE",
+          "summary": "\"OrderItem\" / \"order item\" / \"order-item\" -> \"order_item\"."
+        },
+        {
+          "name": "TO_CAMEL_CASE",
+          "summary": "\"order_item\" / \"order item\" -> \"orderItem\"."
+        },
+        {
+          "name": "TO_PASCAL_CASE",
+          "summary": "\"order_item\" / \"order item\" -> \"OrderItem\"."
+        },
+        {
+          "name": "LPAD",
+          "summary": "Pad on the left up to iv_length using a single pad character."
+        },
+        {
+          "name": "RPAD",
+          "summary": "Pad on the right up to iv_length using a single pad character."
+        },
+        {
+          "name": "ALPHA_IN",
+          "summary": "ALPHA conversion - add leading zeros (\"42\" -> \"0000000042\")."
+        },
+        {
+          "name": "ALPHA_OUT",
+          "summary": "ALPHA conversion - remove leading zeros (\"0000000042\" -> \"42\")."
+        },
+        {
+          "name": "TRUNCATE",
+          "summary": "Truncate a string and append an ellipsis when it is too long."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_TEST_DATA",
+      "kind": "class",
+      "module": "test",
+      "subpackage": "ZAU_TEST",
+      "description": "AU - Test data builder",
+      "source": "src/test/zcl_au_test_data.clas.abap",
+      "methods": [
+        {
+          "name": "RANDOM_INT",
+          "summary": "Random integer in the closed interval [min, max]."
+        },
+        {
+          "name": "RANDOM_STRING",
+          "summary": "Random alphanumeric string of the requested length."
+        },
+        {
+          "name": "RANDOM_DATE",
+          "summary": "Random date in the closed interval [from, to]."
+        },
+        {
+          "name": "RANDOM_BOOL",
+          "summary": ""
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_TEXT",
+      "kind": "class",
+      "module": "text",
+      "subpackage": "ZAU_TEXT",
+      "description": "AU - SAPscript long text helper",
+      "source": "src/text/zcl_au_text.clas.abap",
+      "methods": [
+        {
+          "name": "READ",
+          "summary": "Read an SAPscript long text (STXH/STXL) as one string. A one-call wrapper"
+        },
+        {
+          "name": "SAVE",
+          "summary": "Save (create or replace) an SAPscript long text from a string. Lines are"
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_TIMER",
+      "kind": "class",
+      "module": "timer",
+      "subpackage": "ZAU_TIMER",
+      "description": "AU - Runtime stopwatch",
+      "source": "src/timer/zcl_au_timer.clas.abap",
+      "methods": [
+        {
+          "name": "START",
+          "summary": "Start a high-resolution stopwatch:"
+        },
+        {
+          "name": "ELAPSED_MICROSECONDS",
+          "summary": "Elapsed microseconds since start( ). Monotonic - safe to call repeatedly."
+        },
+        {
+          "name": "ELAPSED_SECONDS",
+          "summary": ""
+        },
+        {
+          "name": "ELAPSED_TEXT",
+          "summary": "Human-readable elapsed time, e.g. \"1234.567 ms\"."
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_VALIDATE",
+      "kind": "class",
+      "module": "validate",
+      "subpackage": "ZAU_VALIDATE",
+      "description": "AU - Validation helpers (email/Luhn/IBAN)",
+      "source": "src/validate/zcl_au_validate.clas.abap",
+      "methods": [
+        {
+          "name": "IS_EMAIL",
+          "summary": "Pragmatic syntactic e-mail check (not RFC-exhaustive, but catches typos)."
+        },
+        {
+          "name": "LUHN_OK",
+          "summary": "Luhn checksum (credit-card numbers, some national IDs). Spaces are ignored."
+        },
+        {
+          "name": "IS_IBAN",
+          "summary": "IBAN validation: length + the ISO-7064 mod-97 check. Spaces ignored,"
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_WRAP_GEN",
+      "kind": "class",
+      "module": "wrapper",
+      "subpackage": "ZAU_WRAPPER",
+      "description": "AU - Clean Core released-wrapper generator",
+      "source": "src/wrapper/zcl_au_wrap_gen.clas.abap",
+      "methods": [
+        {
+          "name": "FACADE",
+          "summary": "Generate a Clean Core \"released wrapper\" facade class around a non-released"
+        }
+      ]
+    },
+    {
+      "object": "ZCL_AU_ZIP",
+      "kind": "class",
+      "module": "zip",
+      "subpackage": "ZAU_ZIP",
+      "description": "AU - ZIP archive helper",
+      "source": "src/zip/zcl_au_zip.clas.abap",
+      "methods": [
+        {
+          "name": "ADD",
+          "summary": "Add a file (raw bytes) to the archive. Chainable."
+        },
+        {
+          "name": "SAVE",
+          "summary": "Serialize the archive to a single xstring (the .zip content)."
+        },
+        {
+          "name": "LOAD",
+          "summary": "Open an existing archive from its bytes."
+        },
+        {
+          "name": "GET",
+          "summary": "Extract one entry by name."
+        },
+        {
+          "name": "NAMES",
+          "summary": "Names of all entries in the archive."
+        }
+      ]
+    }
+  ]
+}

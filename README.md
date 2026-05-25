@@ -36,7 +36,7 @@ the small, generic helpers that every team otherwise rewrites from scratch.
 | Rich application logging UI / framework | [ABAP Logger](https://github.com/ABAP-Logger/ABAP-Logger) |
 | Test data from spreadsheets / mocking DB | [mockup_loader](https://github.com/sbcgua/mockup_loader) |
 | Git client inside the system | [abapGit](https://github.com/abapGit/abapGit) |
-| Curated index of open-source ABAP | [dotabap.org](https://dotabap.org) · [awesome-abap](https://github.com/sbcgua/awesome-abap) · [abap-florilegium](https://github.com/zenrosadira/abap-florilegium) |
+| Curated index of open-source ABAP | [dotabap.org](https://dotabap.org) · [awesome-abap](https://github.com/sbcgua/awesome-abap) · [abap-florilegium](https://github.com/zenrosadira/abap-florilegium) — now also augmented by **[SAP Docs MCP](docs/MCP-INTEGRATION.md)**, searchable from Claude / Cursor / Copilot |
 
 The thin wrappers here (e.g. `ZCL_AU_JSON`, `ZCL_AU_LOGGER`) are convenience
 layers — the per-module READMEs tell you when to graduate to the full library.
@@ -194,6 +194,7 @@ before/after ABAP:
 | [Clean Core readiness matrix](docs/clean-core-readiness.md) | per-object audit: cloud-safe set, the API blocking each ⚠️/❌, and its released replacement |
 | [Related projects](docs/related-projects.md) | "use this instead" map to established dotabap projects (don't reinvent) |
 | [Local AI review with Ollama](docs/ollama-code-review.md) | free, offline LLM reviewer for your diffs (`tools/ollama-review.sh`) |
+| [ABAP & MCP integration](docs/MCP-INTEGRATION.md) | the four ABAP MCP options, the recommended path, and the local docs-MCP wired into this repo (`docker-compose.sap-docs.yml` + `.mcp.json`) |
 
 ## Architecture, scaling & "does it need splitting?"
 

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "sap-docs": {
+      "type": "http",
+      "url": "http://localhost:3122/mcp"
+    }
+  }
+}

@@ -3,6 +3,24 @@
 Thanks for extending the library! The repository is designed so that each
 utility is an independent, cherry-pickable unit. Please keep it that way.
 
+## Before you start — check for prior art
+
+The goal of this repo is **generic helpers that nobody else provides**. Before
+writing any new utility:
+
+1. **Query the SAP Docs MCP for standard-library prior art.** This repo wires up
+   the [SAP Docs MCP](docs/MCP-INTEGRATION.md) (`docker compose -f
+   docker-compose.sap-docs.yml up -d`, then it is available in Claude Code /
+   Cursor). Search the **ABAP Keyword Documentation** and released APIs first —
+   if SAP already ships a class, CL_/XCO API or statement that does it, don't
+   wrap it; link to it from the module README instead.
+2. **Search [dotabap.org](https://dotabap.org/) for a community project**
+   (see [docs/related-projects.md](docs/related-projects.md)). If a focused,
+   maintained project exists, reference it rather than copying code.
+
+Only build something new when **neither** the standard library **nor** a
+community project covers it. This keeps the library small and worth depending on.
+
 ## Design rules
 
 1. **One utility = one sub-package folder** under `src/`.
