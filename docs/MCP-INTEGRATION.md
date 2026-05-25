@@ -118,7 +118,7 @@ system."
 
 ---
 
-## Local wiring (A) {#local-wiring-a}
+## Local wiring (A)
 
 Two files in this repo wire the `abap` variant into any MCP client:
 
