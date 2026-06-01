@@ -13,5 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - name: Install pinned dependencies
+        run: npm ci
       - name: Run abaplint
-        run: npx --yes @abaplint/cli@latest
+        run: npm run lint
