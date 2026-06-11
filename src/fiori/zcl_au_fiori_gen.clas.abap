@@ -169,20 +169,25 @@ class zcl_au_fiori_gen implementation.
       && |\}|.
 
     " ---- projection view with UI annotations: ZC_* (List Report + Object Page)
+    " Field annotations and the field itself are separate lines; the select-list
+    " comma goes on the field line (every field but the last) - never on an
+    " annotation line.
     data lt_pr type string_table.
+    data(lv_field_count) = lines( it_fields ).
     loop at it_fields into ls_field.
+      data(lv_sep) = cond string( when sy-tabix < lv_field_count then `,` ).
       data lv_anno type string.
       if ls_field-is_key = abap_true.
         " one header facet, anchored on the (first) key field
         lv_anno = `      @UI.facet: [ { id: 'idMain', purpose: #STANDARD, ` &&
                   `type: #IDENTIFICATION_REFERENCE, label: '` && iv_entity && `', position: 10 } ]`.
         append lv_anno to lt_pr.
-        append |  key { ls_field-name }| to lt_pr.
+        append |  key { ls_field-name }{ lv_sep }| to lt_pr.
       else.
         lv_anno = `      @UI: { lineItem: [ { position: ` && |{ ls_field-position }| &&
                   ` } ], identification: [ { position: ` && |{ ls_field-position }| && ` } ] }`.
         append lv_anno to lt_pr.
-        append |      { ls_field-name }| to lt_pr.
+        append |      { ls_field-name }{ lv_sep }| to lt_pr.
       endif.
     endloop.
     rs_result-projection_view =

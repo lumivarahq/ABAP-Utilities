@@ -6,7 +6,10 @@ class zcl_au_number definition
   public section.
     "! Commercial rounding to a number of decimal places.
     "! @parameter iv_mode | rounding mode, see CL_ABAP_MATH constants
-    class-methods round
+    "! Named round_to (not round) so it does not obscure the built-in round( )
+    "! function that the implementation delegates to - a method that shares a
+    "! built-in's name hides it class-wide.
+    class-methods round_to
       importing
         !iv_value        type decfloat34
         !iv_decimals     type i default 2
@@ -54,7 +57,7 @@ endclass.
 
 
 class zcl_au_number implementation.
-  method round.
+  method round_to.
     rv_result = round( val  = iv_value
                        dec  = iv_decimals
                        mode = iv_mode ).
@@ -80,8 +83,8 @@ class zcl_au_number implementation.
     if iv_whole = 0.
       return.
     endif.
-    rv_result = round( iv_value    = iv_part / iv_whole * 100
-                       iv_decimals = iv_decimals ).
+    rv_result = round_to( iv_value    = iv_part / iv_whole * 100
+                          iv_decimals = iv_decimals ).
   endmethod.
 
 

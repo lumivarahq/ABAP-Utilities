@@ -138,16 +138,21 @@ class zcl_au_analytics_gen implementation.
       zcx_au_error=>raise( |No fields supplied for { iv_entity }| ) ##NO_TEXT.
     endif.
 
+    " A measure carries a @DefaultAggregation annotation on its own line; the
+    " select-list comma belongs on the field line (every field but the last),
+    " never on an annotation line - so build the commas in and join with c_lf.
     data lt_lines type string_table.
+    data(lv_field_count) = lines( it_fields ).
     loop at it_fields into data(ls_field).
+      data(lv_sep) = cond string( when sy-tabix < lv_field_count then `,` ).
       if ls_field-is_measure = abap_true.
         " measures are aggregated; default to SUM (adjust as needed)
         append `      @DefaultAggregation: #SUM` to lt_lines.
-        append |      { ls_field-name }| to lt_lines.
+        append |      { ls_field-name }{ lv_sep }| to lt_lines.
       else.
         append cond string( when ls_field-is_key = abap_true
-                            then |  key { ls_field-name }|
-                            else |      { ls_field-name }| ) to lt_lines.
+                            then |  key { ls_field-name }{ lv_sep }|
+                            else |      { ls_field-name }{ lv_sep }| ) to lt_lines.
       endif.
     endloop.
 
@@ -158,7 +163,7 @@ class zcl_au_analytics_gen implementation.
       && |define view entity { iv_namespace }C_{ iv_entity }_CUBE| && c_lf
       && |  as select from { iv_data_source }| && c_lf
       && |\{| && c_lf
-      && concat_lines_of( table = lt_lines sep = |,{ c_lf }| ) && c_lf
+      && concat_lines_of( table = lt_lines sep = c_lf ) && c_lf
       && |\}|.
   endmethod.
 
